@@ -1,5 +1,6 @@
-import React from 'react';
-import { Quote, Star } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Quote, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Testimonial {
   id: number;
@@ -34,8 +35,29 @@ const testimonials: Testimonial[] = [
 ];
 
 const Testimonials: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  useEffect(() => {
+    if (!isPaused) {
+      timerRef.current = setInterval(nextSlide, 3000);
+    }
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isPaused]);
+
   return (
-    <section className="py-24 bg-slate-50 border-t border-gray-200">
+    <section className="py-24 bg-slate-50 border-t border-gray-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-royal-800 font-bold uppercase tracking-widest text-sm mb-3">Student Voices</h2>
@@ -45,38 +67,78 @@ const Testimonials: React.FC = () => {
           <div className="w-24 h-1 bg-gold-500 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((student) => (
-            <div key={student.id} className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-gold-500 relative overflow-hidden group">
-              {/* Watermark Quote Icon - Subtle and in background */}
-              <Quote className="absolute top-2 right-4 text-gray-100 w-24 h-24 opacity-50 transform rotate-12 -z-0 group-hover:scale-110 transition-transform duration-500" />
-              
-              <div className="relative z-10">
-                  <div className="flex text-gold-500 mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={18} fill="currentColor" className="mr-1" />
-                    ))}
-                  </div>
+        <div 
+          className="relative max-w-4xl mx-auto"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+        >
+          <div className="relative h-[400px] md:h-[350px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-gray-100 relative overflow-hidden h-full flex flex-col justify-center">
+                  <Quote className="absolute -top-4 -right-4 text-gray-50 w-48 h-48 opacity-50 transform rotate-12 -z-0" />
+                  
+                  <div className="relative z-10">
+                    <div className="flex text-gold-500 mb-8">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={20} fill="currentColor" className="mr-1" />
+                      ))}
+                    </div>
 
-                  {/* Clean text without explicit quote marks */}
-                  <p className="text-gray-700 mb-8 font-serif text-lg leading-relaxed">
-                    {student.quote}
-                  </p>
+                    <p className="text-gray-700 mb-10 font-serif text-xl md:text-2xl italic leading-relaxed">
+                      "{testimonials[currentIndex].quote}"
+                    </p>
 
-                  <div className="flex items-center pt-6 border-t border-gray-50 mt-auto">
-                    <img 
-                      src={student.image} 
-                      alt={student.name} 
-                      className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-md mr-4"
-                    />
-                    <div>
-                      <h4 className="font-bold text-royal-900 text-base">{student.name}</h4>
-                      <p className="text-xs text-royal-600 font-bold uppercase tracking-wider">{student.grade}</p>
+                    <div className="flex items-center pt-8 border-t border-gray-100">
+                      <img 
+                        src={testimonials[currentIndex].image} 
+                        alt={testimonials[currentIndex].name} 
+                        className="w-16 h-16 rounded-full object-cover border-4 border-white shadow-lg mr-6"
+                      />
+                      <div>
+                        <h4 className="font-bold text-royal-900 text-lg">{testimonials[currentIndex].name}</h4>
+                        <p className="text-sm text-royal-600 font-bold uppercase tracking-widest">{testimonials[currentIndex].grade}</p>
+                      </div>
                     </div>
                   </div>
-              </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation Buttons */}
+          <div className="flex justify-center gap-4 mt-12">
+            <button 
+              onClick={prevSlide}
+              className="p-3 rounded-full bg-white border border-gray-200 text-royal-800 hover:bg-royal-800 hover:text-white transition-all shadow-md"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <div className="flex items-center gap-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all ${currentIndex === index ? 'bg-gold-500 w-8' : 'bg-gray-300'}`}
+                />
+              ))}
             </div>
-          ))}
+            <button 
+              onClick={nextSlide}
+              className="p-3 rounded-full bg-white border border-gray-200 text-royal-800 hover:bg-royal-800 hover:text-white transition-all shadow-md"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
