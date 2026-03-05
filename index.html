@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              royal: {
+                50: '#f0f4f8',
+                100: '#d9e2ec',
+                800: '#004aad',
+                900: '#003d8f',
+              },
+              gold: {
+                400: '#004aad',
+                500: '#004aad',
+                600: '#003d8f',
+              },
+              accentGold: {
+                DEFAULT: '#C4961A',
+                light: '#D4A62A',
+                dark: '#B4860A',
+              }
+            },
+            fontFamily: {
+              serif: ['"Playfair Display"', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+            },
+            animation: {
+                'ken-burns': 'kenBurns 20s ease-in-out infinite alternate',
+                'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+                'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                'scale-x': 'scaleX 1.2s ease-out forwards',
+            },
+            keyframes: {
+                kenBurns: {
+                    '0%': { transform: 'scale(1)' },
+                    '100%': { transform: 'scale(1.1)' },
+                },
+                fadeInDown: {
+                    '0%': { opacity: '0', transform: 'translateY(-20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                fadeInUp: {
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
+                    '100%': { opacity: '1', transform: 'translateY(0)' },
+                },
+                scaleX: {
+                    '0%': { transform: 'scaleX(0)', transformOrigin: 'left' },
+                    '100%': { transform: 'scaleX(1)', transformOrigin: 'left' },
+                }
+            }
+          },
+        },
+      };
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .slide-active img {
+            animation: kenBurns 20s ease-in-out infinite alternate;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google GenAI Import Map -->
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-stone-50 text-slate-800 antialiased font-sans">
+    
+    <!-- HEADER -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out bg-white/95 backdrop-blur-sm py-2 md:py-3 border-b border-gray-100">
+      <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
+        <div class="flex justify-between items-center">
+          <!-- Logo Section -->
+          <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToTop()">
+            <!-- Placeholder Logo Image -->
+            <img 
+              src="https://placehold.co/200x200?text=LOGO" 
+              alt="Hillside School Logo" 
+              class="w-8 h-8 md:w-10 md:h-10 rounded-full object-contain"
+            />
+            <div class="hidden md:block">
+              <h1 class="text-xl md:text-2xl font-serif font-bold text-royal-800 tracking-tight leading-none">
+                HILLSIDE
+              </h1>
+              <span class="text-[10px] md:text-xs text-gray-500 font-semibold tracking-widest uppercase">
+                English School
+              </span>
+            </div>
+            <!-- Mobile Text (Simplified) -->
+             <div class="md:hidden">
+              <h1 class="text-lg font-serif font-bold text-royal-800 tracking-tight leading-none">
+                HILLSIDE
+              </h1>
+            </div>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="hidden lg:flex items-center space-x-8">
+            <button onclick="scrollToTop()" class="text-sm font-semibold text-gray-700 hover:text-royal-800 transition-colors flex items-center group">
+              Home
+            </button>
+            <button onclick="scrollToSection('about')" class="text-sm font-semibold text-gray-700 hover:text-royal-800 transition-colors flex items-center group">
+              About Us <i data-lucide="chevron-down" class="ml-1 opacity-50 group-hover:opacity-100 w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="scrollToSection('academics')" class="text-sm font-semibold text-gray-700 hover:text-royal-800 transition-colors flex items-center group">
+              Academic Programs <i data-lucide="chevron-down" class="ml-1 opacity-50 group-hover:opacity-100 w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="scrollToSection('notices')" class="text-sm font-semibold text-gray-700 hover:text-royal-800 transition-colors flex items-center group">
+              Notices
+            </button>
+            <button onclick="scrollToSection('approach')" class="text-sm font-semibold text-gray-700 hover:text-royal-800 transition-colors flex items-center group">
+              Facilities
+            </button>
+            <button onclick="scrollToSection('contact')" class="text-sm font-semibold text-gray-700 hover:text-royal-800 transition-colors flex items-center group">
+              Contact
+            </button>
+            
+            <button onclick="openSearch()" class="text-gray-400 hover:text-royal-800 transition-colors">
+              <i data-lucide="search" class="w-5 h-5"></i>
+            </button>
+            
+            <button onclick="openApplyModal()" class="bg-royal-800 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-royal-900 transition-colors shadow-sm">
+              Apply Now
+            </button>
+          </nav>
+
+          <!-- Mobile Menu Button -->
+          <div class="lg:hidden flex items-center">
+             <button onclick="openSearch()" class="mr-3 text-gray-600">
+                <i data-lucide="search" class="w-6 h-6"></i>
+             </button>
+            <button id="mobile-menu-btn" class="text-gray-800 focus:outline-none p-1">
+              <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
+              <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-xl py-4 px-4 flex flex-col space-y-4 animate-fade-in-down h-screen sm:h-auto">
+        <button onclick="scrollToTop()" class="mobile-link text-left w-full text-lg font-medium text-gray-800 py-3 border-b border-gray-50">Home</button>
+        <button onclick="scrollToSection('about')" class="mobile-link text-left w-full text-lg font-medium text-gray-800 py-3 border-b border-gray-50">About Us</button>
+        <button onclick="scrollToSection('academics')" class="mobile-link text-left w-full text-lg font-medium text-gray-800 py-3 border-b border-gray-50">Academic Programs</button>
+        <button onclick="scrollToSection('notices')" class="mobile-link text-left w-full text-lg font-medium text-gray-800 py-3 border-b border-gray-50">Notices</button>
+        <button onclick="scrollToSection('approach')" class="mobile-link text-left w-full text-lg font-medium text-gray-800 py-3 border-b border-gray-50">Facilities</button>
+        <button onclick="scrollToSection('contact')" class="mobile-link text-left w-full text-lg font-medium text-gray-800 py-3 border-b border-gray-50">Contact</button>
+        <button onclick="openApplyModal(); toggleMenu();" class="mobile-link w-full bg-royal-800 text-white text-center py-4 rounded-full font-bold mt-4 shadow-lg">Apply Now</button>
+      </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="home" class="relative overflow-hidden h-screen flex items-center justify-center bg-black">
+            <!-- Background Slider -->
+            <div id="hero-slider" class="absolute inset-0 z-0">
+                <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-100 slide-active">
+                    <img src="https://picsum.photos/1920/1080?seed=school1" alt="Hillside School" class="w-full h-full object-cover opacity-60" />
+                </div>
+                <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                    <img src="https://picsum.photos/1920/1080?seed=school2" alt="Hillside School" class="w-full h-full object-cover opacity-60" />
+                </div>
+                <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-0">
+                    <img src="https://picsum.photos/1920/1080?seed=school3" alt="Hillside School" class="w-full h-full object-cover opacity-60" />
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/70"></div>
+            </div>
+
+            <div class="relative z-10 max-w-[1200px] mx-auto px-4 text-center pt-16 md:pt-20">
+                <h1 id="hero-title" class="text-4xl md:text-6xl lg:text-8xl font-serif font-bold text-white mb-4 md:mb-6 leading-[1] transition-all duration-700 tracking-tight">
+                    Empowering <br />
+                    <span class="text-gold-500 italic">Minds</span>
+                </h1>
+                
+                <p id="hero-desc" class="text-base md:text-xl text-gray-300 font-light leading-relaxed max-w-2xl mx-auto mb-8 md:mb-10 animate-fade-in-up">
+                    "Empowering minds, inspiring futures" — committed to academic excellence and holistic development in the heart of Pokhara.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center animate-fade-in-up" style="animation-delay: 200ms">
+                    <button onclick="openApplyModal()" class="group relative bg-gold-500 text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-bold text-base md:text-lg transition-all hover:scale-105 shadow-xl shadow-gold-500/20 flex items-center">
+                        Admissions Open 2081
+                        <i data-lucide="sparkles" class="ml-2 w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                    </button>
+                    <button onclick="scrollToSection('academics')" class="group bg-white/5 hover:bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 md:px-10 md:py-5 rounded-full font-medium text-base md:text-lg transition-all flex items-center">
+                        Explore Programs
+                        <i data-lucide="arrow-down" class="ml-2 w-5 h-5 group-hover:translate-y-1 transition-transform"></i>
+                    </button>
+                </div>
+
+                <!-- Floating Stats -->
+                <div class="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 max-w-4xl mx-auto">
+                    <div class="text-center">
+                        <div class="text-2xl md:text-4xl font-serif font-bold text-gold-500 mb-1">1.2K+</div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Students</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-4xl font-serif font-bold text-gold-500 mb-1">85+</div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Teachers</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-4xl font-serif font-bold text-gold-500 mb-1">100%</div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">SEE Result</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl md:text-4xl font-serif font-bold text-gold-500 mb-1">25+</div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Years</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slider Dots -->
+            <div id="slider-dots" class="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 flex flex-col space-y-4 z-20">
+                <!-- Dots will be injected by JS -->
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-8 md:py-12 bg-white scroll-mt-28 overflow-hidden">
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16">
+                <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center">
+                    <!-- Image Side -->
+                    <div class="w-full lg:w-1/2 order-2 lg:order-1 relative">
+                        <!-- Main Image -->
+                        <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] group">
+                            <img src="https://picsum.photos/1200/900?seed=school_campus" alt="Hillside School Campus" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                        </div>
+
+                        <!-- Decorative Elements -->
+                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl -z-10"></div>
+                        <div class="absolute top-1/2 -left-4 w-24 h-24 border-2 border-gold-500/20 rounded-full -z-10"></div>
+
+                        <!-- Floating Box Badge -->
+                        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-white p-3 md:p-5 rounded-2xl shadow-2xl border-t-4 border-royal-800 z-30">
+                            <div class="flex items-center space-x-4">
+                                <div class="bg-royal-100 p-2.5 rounded-full text-royal-800">
+                                    <i data-lucide="award" class="w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[9px] md:text-[10px] text-gray-500 font-bold uppercase tracking-widest">Established</p>
+                                    <p class="text-lg md:text-2xl font-serif font-bold text-slate-900 leading-none">1998</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Side -->
+                    <div class="w-full lg:w-1/2 order-1 lg:order-2">
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-5 leading-tight">
+                            Nurturing Potential, <br/>
+                            <span class="text-gold-500 italic">Inspiring Excellence</span>
+                        </h2>
+
+                        <div class="space-y-3 text-gray-600 text-sm md:text-base leading-relaxed">
+                            <p>
+                                Hillside English School, located in the peaceful environment of Malepatan, Pokhara, is dedicated to providing quality education. We create an atmosphere where students can grow intellectually, socially, and emotionally.
+                            </p>
+                            <p>
+                                Our curriculum is designed to meet national standards while incorporating modern teaching methodologies. We focus on practical learning, discipline, and moral values to prepare our students for the challenges of the 21st century.
+                            </p>
+                        </div>
+
+                        <!-- Motto Card -->
+                        <div class="mt-10 p-6 md:p-8 bg-stone-50 rounded-2xl border-l-4 border-royal-800 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                                <i data-lucide="quote" class="w-16 h-16 text-royal-800"></i>
+                            </div>
+                            <h3 class="text-royal-800 font-bold text-lg mb-2">Our Motto</h3>
+                            <p class="text-gray-700 italic text-lg md:text-xl font-serif">
+                                "Empowering minds, inspiring futures"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRINCIPAL MESSAGE SECTION -->
+        <section class="py-10 md:py-16 bg-royal-50 border-t border-royal-100 scroll-mt-28">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
+                <div class="flex flex-col md:flex-row items-center gap-8 lg:gap-16">
+                     <!-- Principal Image -->
+                     <div class="w-full md:w-1/3 flex justify-center md:justify-end">
+                        <div class="relative w-40 md:w-56">
+                            <div class="absolute inset-0 bg-gold-500 rounded-full blur-3xl opacity-20"></div>
+                            <img src="https://picsum.photos/400/500?random=principal_portrait" alt="Mr. Dili Ram Bhattarai" class="relative rounded-lg shadow-2xl w-full object-cover aspect-[3/4] border-4 border-white" />
+                        </div>
+                     </div>
+                     
+                     <!-- Principal Content -->
+                     <div class="w-full md:w-2/3">
+                        <div class="flex items-center space-x-2 mb-4 md:mb-5">
+                             <i data-lucide="quote" class="text-gold-500 w-6 h-6 md:w-8 md:h-8 fill-current opacity-80"></i>
+                             <h4 class="text-royal-800 font-bold uppercase tracking-widest text-[10px] md:text-xs ml-2">Message from the Principal</h4>
+                        </div>
+                        
+                        <h2 class="text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-3 md:mb-4">
+                            Mr. Dili Ram Bhattarai
+                        </h2>
+                        
+                        <div class="prose prose-lg text-gray-600 mb-4 md:mb-6">
+                            <p class="italic text-gray-700 text-base md:text-lg leading-relaxed mb-3 md:mb-4 font-serif border-l-4 border-gold-500 pl-4 md:pl-6">
+                            "Education is the most powerful weapon which you can use to change the world. At Hillside English School, we strive not just for academic grades, but for character building."
+                            </p>
+                            <p class="leading-relaxed text-xs md:text-sm">
+                                We believe in fostering a community where every child feels valued, understood, and challenged to be their best self. Our journey over the last 25 years has been one of constant evolution, blending traditional values with modern educational practices.
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-end">
+                             <div class="text-royal-800 font-script text-lg md:text-xl opacity-80" style="font-family: 'Brush Script MT', cursive;">Dili Ram Bhattarai</div>
+                             <span class="ml-4 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest mb-1">Principal</span>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACADEMIC SECTION -->
+        <section id="academics" class="py-12 md:py-20 bg-stone-50 scroll-mt-28 overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
+                <div class="text-center mb-10">
+                    <div class="flex items-center justify-center space-x-3 mb-3">
+                        <span class="w-8 h-[1px] bg-gold-500"></span>
+                        <span class="text-gold-500 font-bold uppercase tracking-widest text-[10px]">Our Educational Levels</span>
+                        <span class="w-8 h-[1px] bg-gold-500"></span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
+                        Academic <span class="text-gold-500 italic">Excellence</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-200 rounded-[2rem] overflow-hidden bg-white shadow-2xl">
+                    <!-- Pre-Primary -->
+                    <div class="group p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center text-center transition-all duration-500 hover:bg-stone-50">
+                        <div class="w-14 h-14 bg-gold-500/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="baby" class="text-gold-500 w-7 h-7"></i>
+                        </div>
+                        <span class="text-gray-300 font-serif text-3xl mb-2">01</span>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2">Pre-Primary</h3>
+                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
+                        <p class="text-gray-500 font-light text-sm">Nursery to UKG</p>
+                    </div>
+
+                    <!-- Basic Level -->
+                    <div class="group p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center text-center transition-all duration-500 hover:bg-royal-900 hover:text-white">
+                        <div class="w-14 h-14 bg-gold-500 rounded-2xl flex items-center justify-center mb-5 shadow-lg shadow-gold-500/20 group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="book-open" class="text-white w-7 h-7"></i>
+                        </div>
+                        <span class="text-gray-200 group-hover:text-white/20 font-serif text-3xl mb-2 transition-colors">02</span>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 group-hover:text-white mb-2 transition-colors">Basic Level</h3>
+                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
+                        <p class="text-gray-500 group-hover:text-gray-300 font-light text-sm transition-colors">Grade 1 to 8</p>
+                    </div>
+
+                    <!-- Secondary Level -->
+                    <div class="group p-8 md:p-10 flex flex-col items-center text-center transition-all duration-500 hover:bg-stone-50">
+                        <div class="w-14 h-14 bg-royal-800/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="graduation-cap" class="text-royal-800 w-7 h-7"></i>
+                        </div>
+                        <span class="text-gray-300 font-serif text-3xl mb-2">03</span>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2">Secondary</h3>
+                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
+                        <p class="text-gray-500 font-light text-sm">Grade 9 and 10</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATIONAL APPROACH / FACILITIES -->
+        <section id="approach" class="py-12 md:py-20 bg-white scroll-mt-28 overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <span class="w-8 h-[1px] bg-royal-800"></span>
+                            <span class="text-royal-800 font-bold uppercase tracking-widest text-xs">Our Infrastructure</span>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-6 leading-tight">
+                            Modern <br /> <span class="text-gold-500 italic">Facilities</span>
+                        </h2>
+                        <p class="text-gray-600 text-lg font-light leading-relaxed mb-8">
+                            We provide a comprehensive environment designed to foster growth and creativity. Our campus features specialized spaces that cater to the diverse needs of our students.
+                        </p>
+
+                        <div class="space-y-0 border-t border-gray-100">
+                            <!-- Facility 1 -->
+                            <div class="group py-4 border-b border-gray-100 flex items-center justify-between cursor-pointer hover:px-4 transition-all duration-300">
+                                <div class="flex items-center space-x-6">
+                                    <span class="text-gray-300 font-serif text-xl group-hover:text-gold-500 transition-colors">01</span>
+                                    <h3 class="text-lg font-bold text-slate-800">Scholarship Facility</h3>
+                                </div>
+                                <i data-lucide="plus" class="w-4 h-4 text-gray-300 group-hover:rotate-90 group-hover:text-gold-500 transition-all"></i>
+                            </div>
+                            <!-- Facility 2 -->
+                            <div class="group py-4 border-b border-gray-100 flex items-center justify-between cursor-pointer hover:px-4 transition-all duration-300">
+                                <div class="flex items-center space-x-6">
+                                    <span class="text-gray-300 font-serif text-xl group-hover:text-gold-500 transition-colors">02</span>
+                                    <h3 class="text-lg font-bold text-slate-800">Modern Transportation</h3>
+                                </div>
+                                <i data-lucide="plus" class="w-4 h-4 text-gray-300 group-hover:rotate-90 group-hover:text-gold-500 transition-all"></i>
+                            </div>
+                            <!-- Facility 3 -->
+                            <div class="group py-4 border-b border-gray-100 flex items-center justify-between cursor-pointer hover:px-4 transition-all duration-300">
+                                <div class="flex items-center space-x-6">
+                                    <span class="text-gray-300 font-serif text-xl group-hover:text-gold-500 transition-colors">03</span>
+                                    <h3 class="text-lg font-bold text-slate-800">Sports & Playgrounds</h3>
+                                </div>
+                                <i data-lucide="plus" class="w-4 h-4 text-gray-300 group-hover:rotate-90 group-hover:text-gold-500 transition-all"></i>
+                            </div>
+                            <!-- Facility 4 -->
+                            <div class="group py-4 border-b border-gray-100 flex items-center justify-between cursor-pointer hover:px-4 transition-all duration-300">
+                                <div class="flex items-center space-x-6">
+                                    <span class="text-gray-300 font-serif text-xl group-hover:text-gold-500 transition-colors">04</span>
+                                    <h3 class="text-lg font-bold text-slate-800">Digital Learning Labs</h3>
+                                </div>
+                                <i data-lucide="plus" class="w-4 h-4 text-gray-300 group-hover:rotate-90 group-hover:text-gold-500 transition-all"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 relative">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-4 pt-6">
+                                <div class="rounded-sm overflow-hidden h-48 shadow-2xl">
+                                    <img src="https://picsum.photos/seed/lab/600/800" alt="Lab" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                                </div>
+                                <div class="rounded-sm overflow-hidden h-64 shadow-2xl">
+                                    <img src="https://picsum.photos/seed/sports/600/1000" alt="Sports" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="rounded-sm overflow-hidden h-72 shadow-2xl">
+                                    <img src="https://picsum.photos/seed/library/600/1200" alt="Library" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                                </div>
+                                <div class="rounded-sm overflow-hidden h-48 shadow-2xl">
+                                    <img src="https://picsum.photos/seed/classroom/600/800" alt="Classroom" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Accent -->
+                        <div class="absolute -top-10 -right-10 w-40 h-40 border-t-2 border-r-2 border-gold-500/30 -z-10"></div>
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 border-b-2 border-l-2 border-gold-500/30 -z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTICE BOARD -->
+        <section id="notices" class="py-12 md:py-20 bg-stone-50 scroll-mt-28 relative overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-royal-800/5 -skew-x-12 translate-x-1/2 pointer-events-none"></div>
+            
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
+                <div class="flex flex-col lg:flex-row justify-between items-end mb-12 gap-8">
+                    <div class="max-w-2xl">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <span class="w-12 h-[2px] bg-royal-800"></span>
+                            <span class="text-royal-800 font-bold uppercase tracking-[0.3em] text-[10px]">Information Hub</span>
+                        </div>
+                        <h2 class="text-4xl md:text-6xl font-serif font-bold text-slate-900 leading-tight">
+                            Campus <span class="text-gold-500 italic">Bulletin</span>
+                        </h2>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button id="notice-prev" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-royal-800 hover:text-white transition-all">
+                            <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                        </button>
+                        <button id="notice-next" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-royal-800 hover:text-white transition-all">
+                            <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="notice-slider" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-8 scroll-smooth">
+                    <!-- PAGE 1: Bento Layout -->
+                    <div class="min-w-full snap-start grid grid-cols-1 lg:grid-cols-12 gap-8">
+                        <!-- Featured Notice (Bento Large) -->
+                        <div class="lg:col-span-8 group">
+                            <div class="relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-gray-100 h-full flex flex-col">
+                                <div class="absolute top-0 right-0 w-64 h-64 bg-royal-800/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+                                
+                                <div class="p-6 md:p-10 flex-grow">
+                                    <div class="flex flex-wrap items-center gap-4 mb-6">
+                                        <span class="bg-royal-800 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-widest flex items-center gap-2">
+                                            <span class="w-1 h-1 bg-white rounded-full animate-pulse"></span>
+                                            Urgent Notice
+                                        </span>
+                                        <span class="text-gray-400 text-[10px] font-bold flex items-center gap-2">
+                                            <i data-lucide="calendar" class="w-3 h-3"></i>
+                                            Posted 2 days ago
+                                        </span>
+                                    </div>
+                                    
+                                    <h3 class="text-2xl md:text-4xl font-serif font-bold text-slate-900 mb-6 leading-tight group-hover:text-royal-800 transition-colors">
+                                        Second Terminal Examination <br/> Routine 2080 Published
+                                    </h3>
+                                    
+                                    <p class="text-gray-600 text-base font-light leading-relaxed mb-8 max-w-2xl">
+                                        The comprehensive examination schedule for Grade 1 through 10 is now available. Students are advised to collect their admit cards from the administrative office.
+                                    </p>
+                                    
+                                    <div class="flex flex-wrap gap-4">
+                                        <button onclick="downloadRoutine()" class="bg-royal-800 text-white px-8 py-4 rounded-xl font-bold hover:bg-royal-900 transition-all flex items-center shadow-lg shadow-royal-900/20 group/btn text-sm">
+                                            <i data-lucide="download-cloud" class="mr-2 w-4 h-4 group-hover/btn:translate-y-1 transition-transform"></i> 
+                                            Download Schedule
+                                        </button>
+                                        <button onclick="openNoticeDetails()" class="bg-stone-50 text-royal-800 px-8 py-4 rounded-xl font-bold hover:bg-stone-100 transition-all flex items-center border border-gray-100 text-sm">
+                                            Full Details
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-stone-50 p-6 md:px-12 border-t border-gray-100 flex items-center justify-between">
+                                    <div class="flex -space-x-3">
+                                        <img src="https://picsum.photos/100/100?seed=staff1" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                                        <img src="https://picsum.photos/100/100?seed=staff2" class="w-10 h-10 rounded-full border-2 border-white shadow-sm" />
+                                        <div class="w-10 h-10 rounded-full bg-royal-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-royal-800 shadow-sm">+3</div>
+                                    </div>
+                                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Administrative Office</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar Bento Items -->
+                        <div class="lg:col-span-4 space-y-6">
+                            <!-- Notice 2 -->
+                            <div class="bg-white p-6 rounded-[2rem] shadow-lg border border-gray-100 hover:border-royal-800/30 transition-all group cursor-pointer" onclick="openNoticeDetails()">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="w-12 h-12 bg-royal-50 rounded-xl flex items-center justify-center text-royal-800 group-hover:bg-royal-800 group-hover:text-white transition-all duration-500">
+                                        <i data-lucide="bell" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold text-gold-500 uppercase tracking-widest">Admissions</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-800 mb-2 leading-tight">New Session 2081 Open</h4>
+                                <p class="text-gray-500 text-xs mb-4 line-clamp-2">Admissions are now open for Playgroup to Grade 9. Limited seats available.</p>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Oct 22, 2023</span>
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-royal-800 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all"></i>
+                                </div>
+                            </div>
+
+                            <!-- Notice 3 -->
+                            <div class="bg-royal-900 p-6 rounded-[2rem] shadow-xl text-white relative overflow-hidden group cursor-pointer">
+                                <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="trophy" class="w-24 h-24"></i>
+                                </div>
+                                <div class="relative z-10">
+                                    <div class="text-[9px] font-bold text-gold-500 uppercase tracking-widest mb-4">Events</div>
+                                    <h4 class="text-xl font-serif font-bold mb-3">Annual Sports <br/> Week Finale</h4>
+                                    <p class="text-white/60 text-xs mb-6">Join us for the closing ceremony of our annual sports week this Friday.</p>
+                                    <button class="text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 hover:text-gold-500 transition-colors">
+                                        View Schedule <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAGE 2: Regular Grid Layout -->
+                    <div class="min-w-full snap-start">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                            <!-- Notice 4 (Previously Featured) -->
+                            <div class="bg-white p-6 rounded-[2rem] shadow-lg border border-gray-100 h-full hover:border-royal-800/30 transition-all group cursor-pointer flex flex-col" onclick="openNoticeDetails()">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="w-12 h-12 bg-royal-50 rounded-xl flex items-center justify-center text-royal-800 group-hover:bg-royal-800 group-hover:text-white transition-all duration-500">
+                                        <i data-lucide="users" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold text-gold-500 uppercase tracking-widest">Meetings</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-800 mb-2 leading-tight">Parent-Teacher Meeting</h4>
+                                <p class="text-gray-500 text-xs mb-4 line-clamp-3">Discussion on academic progress and holistic development for the first quarter of 2080. All parents are requested to attend.</p>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-50 mt-auto">
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Nov 05, 2023</span>
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-royal-800 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all"></i>
+                                </div>
+                            </div>
+
+                            <!-- Notice 5 -->
+                            <div class="bg-white p-6 rounded-[2rem] shadow-lg border border-gray-100 h-full hover:border-royal-800/30 transition-all group cursor-pointer flex flex-col" onclick="openNoticeDetails()">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="w-12 h-12 bg-stone-50 rounded-xl flex items-center justify-center text-royal-800 group-hover:bg-royal-800 group-hover:text-white transition-all duration-500">
+                                        <i data-lucide="snowflake" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold text-gold-500 uppercase tracking-widest">Holidays</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-800 mb-2 leading-tight">Winter Vacation Notice</h4>
+                                <p class="text-gray-500 text-xs mb-4 line-clamp-3">School will remain closed for winter break starting from Poush 15. Enjoy the holidays and stay warm!</p>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-50 mt-auto">
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Dec 20, 2023</span>
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-royal-800 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all"></i>
+                                </div>
+                            </div>
+
+                            <!-- Notice 6 -->
+                            <div class="bg-white p-6 rounded-[2rem] shadow-lg border border-gray-100 h-full hover:border-royal-800/30 transition-all group cursor-pointer flex flex-col" onclick="openNoticeDetails()">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="w-12 h-12 bg-stone-50 rounded-xl flex items-center justify-center text-royal-800 group-hover:bg-royal-800 group-hover:text-white transition-all duration-500">
+                                        <i data-lucide="microscope" class="w-5 h-5"></i>
+                                    </div>
+                                    <span class="text-[9px] font-bold text-gold-500 uppercase tracking-widest">Exhibition</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-slate-800 mb-2 leading-tight">Science Fair 2080</h4>
+                                <p class="text-gray-500 text-xs mb-4 line-clamp-3">Showcasing innovative projects and scientific discoveries from our young scientists. Parents are invited.</p>
+                                <div class="flex items-center justify-between pt-4 border-t border-gray-50 mt-auto">
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Jan 12, 2024</span>
+                                    <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-royal-800 opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="py-12 md:py-16 bg-[#0a0a0a] relative overflow-hidden scroll-mt-28">
+            <!-- Atmospheric background -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-royal-900/20 rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gold-900/10 rounded-full blur-[120px]"></div>
+            </div>
+
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
+                <div class="text-center mb-12">
+                    <div class="flex items-center justify-center space-x-3 mb-4">
+                        <span class="w-8 h-[1px] bg-gold-500/50"></span>
+                        <span class="text-gold-500 font-bold uppercase tracking-[0.5em] text-[10px]">Student Perspectives</span>
+                        <span class="w-8 h-[1px] bg-gold-500/50"></span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold text-white leading-tight">
+                        What Our <span class="italic text-gold-500">Students Say</span>
+                    </h2>
+                </div>
+
+                <div id="testimonial-slider" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-6">
+                    <!-- Testimonial 1 -->
+                    <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                        <div class="group relative bg-zinc-900/40 backdrop-blur-md border border-white/5 p-8 rounded-3xl hover:border-gold-500/30 transition-all duration-500 flex flex-col h-full">
+                            <div class="absolute top-6 right-8 text-gold-500/10 group-hover:text-gold-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-6 scale-90 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg font-serif italic text-zinc-300 leading-relaxed mb-8">
+                                "The science laboratories at Hillside are exceptional. The practical approach to learning physics and chemistry has really helped me prepare for my SEE exams with confidence."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-4">
+                                <img src="https://picsum.photos/100/100?seed=student1" alt="Aarav Shrestha" class="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Aarav Shrestha</h4>
+                                    <p class="text-gold-500 text-[9px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                        <div class="group relative bg-zinc-900/40 backdrop-blur-md border border-white/5 p-8 rounded-3xl hover:border-royal-500/30 transition-all duration-500 flex flex-col h-full">
+                            <div class="absolute top-6 right-8 text-royal-500/10 group-hover:text-royal-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-6 scale-90 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg font-serif italic text-zinc-300 leading-relaxed mb-8">
+                                "Teachers here don't just teach from books; they mentor us. The extra coaching classes gave me the confidence to aim for a GPA of 4.0."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-4">
+                                <img src="https://picsum.photos/100/100?seed=student2" alt="Priya Sharma" class="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Priya Sharma</h4>
+                                    <p class="text-gold-500 text-[9px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                        <div class="group relative bg-zinc-900/40 backdrop-blur-md border border-white/5 p-8 rounded-3xl hover:border-gold-500/30 transition-all duration-500 flex flex-col h-full">
+                            <div class="absolute top-6 right-8 text-gold-500/10 group-hover:text-gold-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-6 scale-90 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg font-serif italic text-zinc-300 leading-relaxed mb-8">
+                                "I joined for the academics, but I stayed for the community. The balance between studies and sports like football is perfect at Hillside."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-4">
+                                <img src="https://picsum.photos/100/100?seed=student3" alt="Rohan Gurung" class="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Rohan Gurung</h4>
+                                    <p class="text-gold-500 text-[9px] font-bold uppercase tracking-widest">Grade 9 • Sports Captain</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                        <div class="group relative bg-zinc-900/40 backdrop-blur-md border border-white/5 p-8 rounded-3xl hover:border-royal-500/30 transition-all duration-500 flex flex-col h-full">
+                            <div class="absolute top-6 right-8 text-royal-500/10 group-hover:text-royal-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-6 scale-90 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg font-serif italic text-zinc-300 leading-relaxed mb-8">
+                                "The library resources are vast. I spent most of my time there researching for my projects, and the quiet environment is perfect for focused study."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-4">
+                                <img src="https://picsum.photos/100/100?seed=student4" alt="Sita Thapa" class="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Sita Thapa</h4>
+                                    <p class="text-gold-500 text-[9px] font-bold uppercase tracking-widest">Grade 10 • Academic Topper</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                        <div class="group relative bg-zinc-900/40 backdrop-blur-md border border-white/5 p-8 rounded-3xl hover:border-gold-500/30 transition-all duration-500 flex flex-col h-full">
+                            <div class="absolute top-6 right-8 text-gold-500/10 group-hover:text-gold-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-6 scale-90 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg font-serif italic text-zinc-300 leading-relaxed mb-8">
+                                "Hillside has given me more than just education; it has given me a family. The support from my peers and teachers is something I will cherish forever."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-4">
+                                <img src="https://picsum.photos/100/100?seed=student5" alt="Bikash Rai" class="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Bikash Rai</h4>
+                                    <p class="text-gold-500 text-[9px] font-bold uppercase tracking-widest">Grade 8 • Creative Arts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="min-w-full md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-start">
+                        <div class="group relative bg-zinc-900/40 backdrop-blur-md border border-white/5 p-8 rounded-3xl hover:border-royal-500/30 transition-all duration-500 flex flex-col h-full">
+                            <div class="absolute top-6 right-8 text-royal-500/10 group-hover:text-royal-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-6 scale-90 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg font-serif italic text-zinc-300 leading-relaxed mb-8">
+                                "The extracurricular activities here are amazing. I've learned so much about leadership and teamwork through the various clubs and events."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-4">
+                                <img src="https://picsum.photos/100/100?seed=student6" alt="Anjali Pariyar" class="w-12 h-12 rounded-full grayscale group-hover:grayscale-0 transition-all duration-500 border border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-sm">Anjali Pariyar</h4>
+                                    <p class="text-gold-500 text-[9px] font-bold uppercase tracking-widest">Grade 9 • Debate Club</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="apply" class="py-8 md:py-16 px-4 bg-stone-50 scroll-mt-28">
+          <div class="max-w-[1600px] mx-auto relative">
+            <div class="relative bg-royal-900 rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl min-h-[350px] md:min-h-[450px] flex items-center">
+              <!-- Background Pattern -->
+              <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#004aad 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+              <!-- Content Grid -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full h-full relative z-10">
+                
+                <!-- Text Column -->
+                <div class="p-6 md:p-10 lg:p-16 flex flex-col justify-center text-center lg:text-left">
+                   <!-- Badge -->
+                   <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-gold-400 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-6 md:mb-8 mx-auto lg:mx-0 w-fit">
+                      <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse-slow"></span>
+                      Admissions Open 2025
+                   </div>
+                   
+                   <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-4 md:mb-6 leading-tight">
+                      Unlock Your Child's <br class="hidden md:block"/>
+                      <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 to-gold-600">Full Potential</span>
+                   </h2>
+                   
+                   <p class="text-blue-100 text-sm md:text-lg mb-8 md:mb-10 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                      Join a legacy of excellence. We are currently accepting applications for the upcoming academic session. Secure a spot today.
+                   </p>
+                   
+                   <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start">
+                      <button onclick="openApplyModal()" class="bg-gold-500 text-white hover:bg-gold-600 px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all shadow-lg hover:shadow-gold-500/30 flex items-center justify-center group text-base md:text-lg">
+                          Apply Now
+                          <i data-lucide="arrow-right" class="ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"></i>
+                      </button>
+                      <button onclick="openVisitModal()" class="bg-transparent border-2 border-white/20 text-white hover:bg-white/10 px-6 md:px-8 py-3 md:py-4 rounded-lg font-bold transition-all flex items-center justify-center text-base md:text-lg">
+                          Schedule Visit
+                      </button>
+                   </div>
+                </div>
+
+                <!-- Image Column with Fancy Clip -->
+                <div class="relative h-64 md:h-full min-h-[300px] lg:min-h-full overflow-hidden order-first lg:order-last">
+                   <div class="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-royal-900 via-transparent to-transparent z-10 lg:w-1/3"></div>
+                   <img 
+                      src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop" 
+                      alt="Student smiling" 
+                      class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                   />
+                   <!-- Floating Stats Card on Image -->
+                   <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white/95 backdrop-blur shadow-xl p-4 md:p-6 rounded-xl z-20 hidden sm:block max-w-xs animate-fade-in-down border-l-4 border-gold-500">
+                       <div class="flex items-center gap-3 md:gap-4">
+                          <div class="bg-royal-100 p-2 md:p-3 rounded-full text-royal-800">
+                              <i data-lucide="check-circle" class="w-5 h-5 md:w-6 md:h-6"></i>
+                          </div>
+                          <div>
+                              <p class="text-[10px] md:text-xs text-gray-500 font-bold uppercase">Enrollment</p>
+                              <p class="text-royal-900 font-bold text-base md:text-lg">Limited Seats Available</p>
+                          </div>
+                       </div>
+                   </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-zinc-900 text-zinc-100 pt-16 pb-10 scroll-mt-28 relative overflow-hidden">
+        <!-- Subtle Theme-Colored Glows -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-royal-800/20 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-0 right-0 w-64 h-64 bg-accentGold/10 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <!-- Top Tier: Identity & Newsletter -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 items-start">
+                <div class="lg:col-span-7">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8">
+                        <div class="bg-white p-3 rounded-full shadow-2xl border border-zinc-800">
+                            <img src="https://placehold.co/200x200?text=LOGO" alt="Hillside Logo" class="w-16 h-16 object-contain rounded-full" />
+                        </div>
+                        <div class="text-center md:text-left">
+                            <h2 class="text-4xl font-serif font-bold text-royal-800 tracking-tight leading-none mb-3">Hillside</h2>
+                            <div class="flex items-center justify-center md:justify-start gap-4">
+                                <span class="text-white font-bold uppercase tracking-[0.4em] text-[10px]">English School</span>
+                                <span class="w-12 h-[1px] bg-zinc-800"></span>
+                                <span class="text-white font-bold uppercase tracking-widest text-[10px]">Est. 1998</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-xl font-light max-w-2xl leading-snug serif italic border-l-4 border-royal-800 pl-8">
+                        "Nurturing the leaders of tomorrow through a foundation of excellence today."
+                    </p>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="bg-zinc-800/40 border border-zinc-700 p-8 rounded-[2rem] backdrop-blur-xl shadow-2xl">
+                        <h4 class="text-[10px] font-bold uppercase tracking-[0.3em] text-white mb-3">Academic Newsletter</h4>
+                        <p class="text-white text-xs mb-6">Stay informed about our campus events and academic achievements.</p>
+                        <form class="flex flex-col gap-4" onsubmit="event.preventDefault(); showToast('Subscribed!', 'success')">
+                            <input type="email" placeholder="EMAIL ADDRESS" required class="bg-zinc-900/50 border border-zinc-700 rounded-xl px-5 py-3 text-xs focus:outline-none focus:border-royal-500 transition-all text-white placeholder:text-zinc-700 uppercase tracking-widest" />
+                            <button type="submit" class="bg-royal-800 hover:bg-royal-700 text-white px-6 py-3 rounded-xl transition-all font-bold text-[10px] uppercase tracking-[0.3em] shadow-xl shadow-royal-900/20 flex items-center justify-center gap-3 group">
+                                Subscribe <i data-lucide="send" class="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Tier: Information Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <!-- Contact -->
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.5em] text-white">01 / Contact</h5>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-9 h-9 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 border border-zinc-700 group-hover:border-royal-500 transition-colors">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-bold text-xs mb-1">Our Location</p>
+                                <p class="text-white text-xs leading-relaxed">Malepatan-12, Pokhara<br/>Kaski, Nepal</p>
+                            </div>
+                        </div>
+                        <button onclick="showToast('Calling...')" class="flex items-center gap-5 group w-full text-left">
+                            <div class="w-9 h-9 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 border border-zinc-700 group-hover:bg-royal-800 group-hover:border-royal-800 transition-all">
+                                <i data-lucide="phone" class="w-4 h-4 text-white group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-bold text-xs mb-1">Call Us</p>
+                                <p class="text-white text-xs group-hover:text-royal-400 transition-colors">985-6031780</p>
+                            </div>
+                        </button>
+                        <button onclick="showToast('Emailing...')" class="flex items-center gap-5 group w-full text-left">
+                            <div class="w-9 h-9 rounded-xl bg-zinc-800 flex items-center justify-center shrink-0 border border-zinc-700 group-hover:bg-royal-800 group-hover:border-royal-800 transition-all">
+                                <i data-lucide="mail" class="w-4 h-4 text-white group-hover:text-white transition-colors"></i>
+                            </div>
+                            <div>
+                                <p class="text-white font-bold text-xs mb-1">Email Us</p>
+                                <p class="text-white text-xs group-hover:text-royal-400 transition-colors break-all">hillsideengschool@gmail.com</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Community -->
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.5em] text-white">02 / Community</h5>
+                    <ul class="space-y-4">
+                        <li><button onclick="showToast('Parents Info')" class="text-white hover:text-royal-400 text-xs font-medium transition-all hover:pl-3 flex items-center gap-3">Parents Info</button></li>
+                        <li><button onclick="showToast('Alumni')" class="text-white hover:text-royal-400 text-xs font-medium transition-all hover:pl-3 flex items-center gap-3">Alumni</button></li>
+                        <li><button onclick="showToast('Calendar')" class="text-white hover:text-royal-400 text-xs font-medium transition-all hover:pl-3 flex items-center gap-3">School Calendar</button></li>
+                        <li><button onclick="scrollToSection('approach')" class="text-white hover:text-royal-400 text-xs font-medium transition-all hover:pl-3 flex items-center gap-3">ECA Activities</button></li>
+                        <li><button onclick="showToast('Careers')" class="text-white hover:text-royal-400 text-xs font-medium transition-all hover:pl-3 flex items-center gap-3">Careers</button></li>
+                    </ul>
+                </div>
+
+                <!-- Admissions -->
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.5em] text-white">03 / Admissions</h5>
+                    <div class="bg-zinc-800/30 border border-zinc-700/50 p-6 rounded-2xl space-y-6 backdrop-blur-sm">
+                        <div>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-white mb-3">Office Hours</p>
+                            <div class="space-y-2 text-[10px]">
+                                <div class="flex justify-between border-b border-zinc-800 pb-2"><span class="text-white">Sun - Fri</span> <span class="text-white font-bold">9:00 - 4:00</span></div>
+                                <div class="flex justify-between pt-1"><span class="text-white">Saturday</span> <span class="text-white italic opacity-50">Closed</span></div>
+                            </div>
+                        </div>
+                        <button onclick="openApplyModal()" class="w-full bg-royal-800 hover:bg-royal-700 text-white py-3 rounded-lg text-[9px] font-bold uppercase tracking-[0.2em] transition-all shadow-xl shadow-royal-900/20">
+                            Apply Online Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="space-y-6">
+                    <h5 class="text-[10px] font-bold uppercase tracking-[0.5em] text-white">04 / Location</h5>
+                    <div class="rounded-2xl overflow-hidden border border-zinc-700 aspect-square relative group shadow-2xl">
+                        <iframe 
+                            width="100%" height="100%" frameborder="0" scrolling="no" 
+                            src="https://maps.google.com/maps?q=Hillside%20English%20School,%20Malepatan,%20Pokhara&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            class="opacity-100 transition-opacity duration-1000 scale-110 group-hover:scale-100 transition-transform"
+                        ></iframe>
+                        <div class="absolute inset-0 pointer-events-none border-4 border-zinc-900/50 rounded-2xl"></div>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="#" onclick="showToast('Facebook'); return false;" class="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white hover:bg-royal-800 hover:text-white hover:border-royal-800 transition-all"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" onclick="showToast('TikTok'); return false;" class="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white hover:bg-royal-800 hover:text-white hover:border-royal-800 transition-all"><i data-lucide="tiktok" class="w-4 h-4"></i></a>
+                        <a href="#" onclick="showToast('Instagram'); return false;" class="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white hover:bg-royal-800 hover:text-white hover:border-royal-800 transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Tier: Legal & App -->
+            <div class="pt-10 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <p class="text-white text-[9px] font-bold uppercase tracking-[0.4em]">&copy; 2025 Hillside English School</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-[8px] font-bold uppercase tracking-widest text-white">Mobile App</span>
+                        <a href="#" target="_blank" class="hover:opacity-80 transition-opacity">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" class="h-6 opacity-100 transition-all" />
+                        </a>
+                    </div>
+                </div>
+                <div class="flex gap-8">
+                    <button onclick="showToast('Privacy')" class="text-white hover:text-white text-[9px] font-bold uppercase tracking-widest transition-colors">Privacy</button>
+                    <button onclick="showToast('Handbook')" class="text-white hover:text-white text-[9px] font-bold uppercase tracking-widest transition-colors">Handbook</button>
+                    <button onclick="scrollToSection('contact')" class="text-white hover:text-white text-[9px] font-bold uppercase tracking-widest transition-colors">Contact</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top -->
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-24 right-6 w-16 h-16 rounded-2xl bg-royal-800 text-white flex items-center justify-center hover:bg-royal-900 transition-all shadow-2xl z-30 group border border-zinc-800">
+            <i data-lucide="arrow-up" class="w-6 h-6 group-hover:-translate-y-2 transition-transform"></i>
+        </button>
+    </footer>
+
+    <!-- ASSISTANT FAB -->
+    <button
+        id="assistant-toggle"
+        class="fixed bottom-6 right-6 z-40 bg-royal-800 text-white p-4 rounded-full shadow-lg hover:bg-royal-900 hover:shadow-xl transition-all duration-300 group scale-100 opacity-100"
+        aria-label="Open Assistant"
+    >
+        <i data-lucide="message-square" class="w-6 h-6"></i>
+        <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity pointer-events-none">
+          Ask Hillside AI
+        </span>
+    </button>
+
+    <!-- ASSISTANT CHAT WINDOW -->
+    <div 
+        id="assistant-window"
+        class="fixed z-50 transition-all duration-500 ease-in-out bg-white shadow-2xl rounded-lg overflow-hidden flex flex-col border border-gray-200 bottom-6 right-6 opacity-0 translate-y-10 pointer-events-none w-0 h-0 md:w-[400px] md:h-[600px]"
+    >
+        <!-- Chat Header -->
+        <div class="bg-royal-800 p-4 flex justify-between items-center text-white shrink-0">
+          <div class="flex items-center space-x-2">
+            <i data-lucide="sparkles" class="text-gold-500 w-[18px] h-[18px]"></i>
+            <div>
+              <h3 class="font-serif font-bold text-sm tracking-wide">HILLSIDE <span class="text-gold-500">AI</span></h3>
+              <span class="text-xs text-blue-100 opacity-80 block">Virtual Campus Assistant</span>
+            </div>
+          </div>
+          <button id="chat-minimize" class="text-white/80 hover:text-white transition-colors p-1" aria-label="Minimize Chat">
+            <i data-lucide="minimize-2" class="w-[18px] h-[18px]"></i>
+          </button>
+        </div>
+
+        <!-- Messages Area -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 bg-stone-50 space-y-4">
+            <!-- Initial Welcome Message -->
+            <div class="flex justify-start">
+                <div class="max-w-[85%] rounded-2xl p-3 text-sm leading-relaxed shadow-sm bg-white text-gray-800 border border-gray-100 rounded-bl-none">
+                    Welcome to Hillside English School. I am your Virtual Assistant. How may I help you today?
+                    <div class="text-[10px] mt-1 opacity-50 text-left" id="initial-time"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-3 bg-white border-t border-gray-100 shrink-0">
+          <div class="relative">
+            <input
+              id="chat-input"
+              type="text"
+              placeholder="Ask about admissions, fees..."
+              class="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-royal-800/20 focus:border-royal-800 transition-all text-sm"
+            />
+            <button
+              id="chat-send"
+              disabled
+              class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-royal-800 text-white rounded-full hover:bg-royal-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <i data-lucide="send" id="send-icon" class="w-4 h-4"></i>
+              <i data-lucide="loader-2" id="loading-icon" class="w-4 h-4 animate-spin hidden"></i>
+            </button>
+          </div>
+          <div class="text-center mt-2">
+            <span class="text-[10px] text-gray-400">AI can make mistakes. Check important info.</span>
+          </div>
+        </div>
+    </div>
+    
+    <!-- GENERIC MODAL -->
+    <div id="generic-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative bg-white rounded-lg shadow-2xl p-6 w-[90%] max-w-md animate-fade-in-down">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modal-title" class="text-xl font-serif font-bold text-royal-800">Title</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-500"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <div id="modal-content" class="text-gray-600 mb-6 max-h-[60vh] overflow-y-auto">Content</div>
+            <div class="flex justify-end">
+                <button onclick="closeModal()" class="bg-gray-200 text-gray-800 px-4 py-2 rounded-sm font-bold hover:bg-gray-300 transition-colors">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container" class="fixed bottom-6 left-6 z-[70] flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- UI LOGIC SCRIPT -->
+    <script>
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                 // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuIcon = document.getElementById('menu-icon');
+                const closeIcon = document.getElementById('close-icon');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+                
+                el.scrollIntoView({behavior: 'smooth'});
+            }
+        }
+        
+        function scrollToTop() {
+             const mobileMenu = document.getElementById('mobile-menu');
+             const menuIcon = document.getElementById('menu-icon');
+             const closeIcon = document.getElementById('close-icon');
+             
+             if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+             }
+             window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // --- TOAST SYSTEM ---
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            // Icon selection
+            let icon = '';
+            let colorClass = 'border-l-4 border-royal-800 bg-white text-gray-800';
+            
+            if (type === 'success') {
+                icon = '<i data-lucide="check-circle" class="w-5 h-5 text-green-500 mr-3"></i>';
+                colorClass = 'border-l-4 border-green-500 bg-white text-gray-800';
+            } else if (type === 'error') {
+                icon = '<i data-lucide="alert-circle" class="w-5 h-5 text-red-500 mr-3"></i>';
+                colorClass = 'border-l-4 border-red-500 bg-white text-gray-800';
+            } else if (type === 'info') {
+                icon = '<i data-lucide="info" class="w-5 h-5 text-blue-500 mr-3"></i>';
+                colorClass = 'border-l-4 border-blue-500 bg-white text-gray-800';
+            } else if (type === 'warning') {
+                icon = '<i data-lucide="alert-triangle" class="w-5 h-5 text-gold-500 mr-3"></i>';
+                colorClass = 'border-l-4 border-gold-500 bg-white text-gray-800';
+            }
+
+            toast.className = `toast flex items-center p-4 rounded shadow-lg min-w-[300px] animate-toast-in ${colorClass}`;
+            toast.innerHTML = `${icon}<span class="font-medium text-sm">${message}</span>`;
+            
+            container.appendChild(toast);
+            
+            // Re-render icons for the new element
+            lucide.createIcons();
+
+            // Remove after delay
+            setTimeout(() => {
+                toast.classList.remove('animate-toast-in');
+                toast.classList.add('animate-toast-out');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // --- MODAL SYSTEM ---
+        function openModal(title, content) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-content').innerHTML = content;
+            document.getElementById('generic-modal').classList.remove('hidden');
+            // Re-scan for new icons
+            lucide.createIcons();
+            // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('generic-modal').classList.add('hidden');
+            // Restore background scrolling
+            document.body.style.overflow = '';
+        }
+
+        window.handleLoadMore = function(btn) {
+            const originalText = btn.innerText;
+            btn.innerText = 'Loading...';
+            
+            setTimeout(() => {
+                btn.innerText = 'No more notices to load';
+                btn.disabled = true;
+                btn.classList.remove('text-royal-800', 'hover:underline');
+                btn.classList.add('text-gray-400', 'cursor-not-allowed');
+            }, 1000);
+        }
+
+        function openSearch() {
+            openModal('Search Website', `
+                <div class="relative">
+                    <input type="text" id="search-input" placeholder="Search for pages, notices..." class="w-full p-3 pl-10 border border-gray-300 rounded mb-4 focus:border-royal-800 focus:outline-none">
+                    <i data-lucide="search" class="absolute left-3 top-3.5 w-5 h-5 text-gray-400"></i>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <p class="font-bold mb-2">Popular Searches:</p>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="closeModal(); scrollToSection('apply')" class="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-xs">Admissions</button>
+                        <button onclick="closeModal(); scrollToSection('academics')" class="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-xs">Result</button>
+                        <button onclick="closeModal(); scrollToSection('contact')" class="bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-full text-xs">Contact</button>
+                    </div>
+                </div>
+                <button onclick="showToast('Searching...', 'info'); setTimeout(closeModal, 1000)" class="mt-4 w-full bg-royal-800 text-white py-2 rounded font-bold">Search</button>
+            `);
+            setTimeout(() => document.getElementById('search-input').focus(), 100);
+        }
+
+        function openApplyModal() {
+            const redirectUrl = window.location.href;
+            openModal('Apply Online', `
+                <p class="mb-4 text-sm text-gray-600">Admissions for the upcoming session are open. Please fill out the form below to express your interest.</p>
+                <!-- CHANGE EMAIL HERE: Change the email in the action URL below -->
+                <form action="https://formsubmit.co/sudeepstha1718@gmail.com" method="POST" class="space-y-4">
+                    <input type="hidden" name="_subject" value="New Admission Inquiry">
+                    <input type="hidden" name="_next" value="${redirectUrl}">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <input type="text" name="student_name" placeholder="Student Name" required class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" name="grade" placeholder="Grade Applying For" required class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                        <input type="tel" name="contact_number" placeholder="Parent Contact No" required class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                    </div>
+                    <input type="email" name="email" placeholder="Parent Email (Optional)" class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                    <button type="submit" class="w-full bg-royal-800 text-white p-3 rounded font-bold hover:bg-royal-900 transition-colors flex justify-center items-center">
+                        Submit Application
+                    </button>
+                </form>
+            `);
+        }
+
+        function openVisitModal() {
+            const redirectUrl = window.location.href;
+            openModal('Book a School Visit', `
+                <p class="mb-4 text-sm text-gray-600">We would love to show you around! Please choose a preferred date and time.</p>
+                <!-- CHANGE EMAIL HERE: Change the email in the action URL below -->
+                <form action="https://formsubmit.co/sudeepstha1718@gmail.com" method="POST" class="space-y-4">
+                    <input type="hidden" name="_subject" value="New School Visit Request">
+                    <input type="hidden" name="_next" value="${redirectUrl}">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <input type="date" name="visit_date" required class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                    <select name="preferred_time" class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                        <option>Morning (10:00 AM - 12:00 PM)</option>
+                        <option>Afternoon (1:00 PM - 3:00 PM)</option>
+                    </select>
+                    <input type="text" name="visitor_name" placeholder="Your Name" required class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                    <input type="tel" name="phone_number" placeholder="Phone Number" required class="w-full p-2 border border-gray-300 rounded focus:border-royal-800 outline-none">
+                    <button type="submit" class="w-full bg-royal-800 text-white p-3 rounded font-bold hover:bg-royal-900 transition-colors flex justify-center items-center">
+                        Request Visit
+                    </button>
+                </form>
+            `);
+        }
+
+        function downloadRoutine() {
+            showToast('Downloading Exam Routine...', 'info');
+            setTimeout(() => {
+                const link = document.createElement('a');
+                link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent('Hillside English School - Exam Routine 2080\n\nGrade 10:\nSunday: Math\nMonday: Science\n...');
+                link.download = 'Exam_Routine_2080.txt'; // Using txt for demo, normally pdf
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast('Download Complete!', 'success');
+            }, 1000);
+        }
+
+        function openNoticeDetails() {
+            openModal('Notice Details', `
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 text-sm text-gray-500">
+                        <i data-lucide="calendar" class="w-4 h-4"></i> Posted on Oct 25, 2023
+                    </div>
+                    <h4 class="font-bold text-lg text-slate-800">Regarding School Closing Ceremony</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        This is to inform all students and parents that the annual sports week closing ceremony will be held on the coming Friday. Attendance is mandatory for all students.
+                        <br><br>
+                        Parents are cordially invited to witness the prize distribution ceremony starting at 1:00 PM in the school auditorium.
+                    </p>
+                    <div class="bg-gray-50 p-3 rounded border border-gray-200 text-sm">
+                        <strong>Note:</strong> Regular classes will resume from Sunday.
+                    </div>
+                </div>
+            `);
+        }
+
+        function openArchiveModal() {
+            openModal('Notices Archive', `
+                <div class="space-y-2">
+                    <button class="w-full text-left p-3 hover:bg-gray-50 border-b border-gray-100 group transition-colors" onclick="showToast('Opening Notice...')">
+                        <div class="text-xs text-gray-400 group-hover:text-royal-600">Sep 12, 2023</div>
+                        <div class="font-bold text-sm text-slate-700 group-hover:text-royal-800">First Terminal Exam Result</div>
+                    </button>
+                    <button class="w-full text-left p-3 hover:bg-gray-50 border-b border-gray-100 group transition-colors" onclick="showToast('Opening Notice...')">
+                        <div class="text-xs text-gray-400 group-hover:text-royal-600">Aug 05, 2023</div>
+                        <div class="font-bold text-sm text-slate-700 group-hover:text-royal-800">Teej Celebration Program</div>
+                    </button>
+                    <button class="w-full text-left p-3 hover:bg-gray-50 border-b border-gray-100 group transition-colors" onclick="showToast('Opening Notice...')">
+                        <div class="text-xs text-gray-400 group-hover:text-royal-600">Jul 20, 2023</div>
+                        <div class="font-bold text-sm text-slate-700 group-hover:text-royal-800">Class 11 Orientation Schedule</div>
+                    </button>
+                    <button class="w-full text-left p-3 hover:bg-gray-50 border-b border-gray-100 group transition-colors" onclick="showToast('Opening Notice...')">
+                        <div class="text-xs text-gray-400 group-hover:text-royal-600">Jun 15, 2023</div>
+                        <div class="font-bold text-sm text-slate-700 group-hover:text-royal-800">Book List for Academic Year 2080</div>
+                    </button>
+                </div>
+                <div class="text-center mt-4">
+                    <button onclick="window.handleLoadMore(this)" class="text-xs text-royal-800 hover:underline font-bold">Load More...</button>
+                </div>
+            `);
+        }
+
+        // --- NOTICE SLIDER LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.getElementById('notice-slider');
+            const prevBtn = document.getElementById('notice-prev');
+            const nextBtn = document.getElementById('notice-next');
+
+            if (slider && prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    const scrollAmount = slider.clientWidth; // Scroll by full page width
+                    slider.scrollBy({
+                        left: -scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    const scrollAmount = slider.clientWidth; // Scroll by full page width
+                    slider.scrollBy({
+                        left: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                });
+
+                // --- TESTIMONIAL SLIDER LOGIC ---
+                const tSlider = document.getElementById('testimonial-slider');
+
+                if (tSlider) {
+                    let autoSlideInterval;
+                    let isPaused = false;
+
+                    function startAutoSlide() {
+                        autoSlideInterval = setInterval(() => {
+                            if (!isPaused && window.innerWidth < 768) { // Only on mobile
+                                const scrollAmount = tSlider.clientWidth;
+                                // Check if we are at the end
+                                if (tSlider.scrollLeft + tSlider.clientWidth >= tSlider.scrollWidth - 20) {
+                                    tSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                                } else {
+                                    tSlider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                                }
+                            }
+                        }, 2000);
+                    }
+
+                    // Pause on interaction
+                    const pause = () => { isPaused = true; };
+                    const resume = () => { isPaused = false; };
+
+                    tSlider.addEventListener('touchstart', pause, { passive: true });
+                    tSlider.addEventListener('touchend', resume, { passive: true });
+                    tSlider.addEventListener('mousedown', pause);
+                    tSlider.addEventListener('mouseup', resume);
+                    tSlider.addEventListener('mouseleave', resume);
+
+                    startAutoSlide();
+                }
+            }
+        });
+    </script>
+
+    <!-- MAIN LOGIC SCRIPT -->
+    <script type="module">
+        import { GoogleGenAI } from "@google/genai";
+
+        // --- ICONS INITIALIZATION ---
+        lucide.createIcons();
+
+        // --- UTILS ---
+        const $ = (selector) => document.querySelector(selector);
+        
+        // --- HEADER SCROLL LOGIC ---
+        const header = $('#main-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('bg-white', 'shadow-md', 'py-1');
+                header.classList.remove('bg-white/95', 'backdrop-blur-sm', 'py-2', 'md:py-3', 'border-b', 'border-gray-100');
+            } else {
+                header.classList.remove('bg-white', 'shadow-md', 'py-1');
+                header.classList.add('bg-white/95', 'backdrop-blur-sm', 'py-2', 'md:py-3', 'border-b', 'border-gray-100');
+            }
+        });
+
+        // --- MOBILE MENU LOGIC ---
+        const mobileMenuBtn = $('#mobile-menu-btn');
+        const mobileMenu = $('#mobile-menu');
+        const menuIcon = $('#menu-icon');
+        const closeIcon = $('#close-icon');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // --- CHAT ASSISTANT LOGIC ---
+        const assistantToggle = $('#assistant-toggle');
+        const assistantWindow = $('#assistant-window');
+        const chatMinimize = $('#chat-minimize');
+        const chatInput = $('#chat-input');
+        const chatSend = $('#chat-send');
+        const chatMessages = $('#chat-messages');
+        const sendIcon = $('#send-icon');
+        const loadingIcon = $('#loading-icon');
+
+        // Set initial time
+        document.getElementById('initial-time').innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        let isChatOpen = false;
+        let chatHistory = [{
+            role: 'model',
+            parts: [{ text: 'Welcome to Hillside English School. I am your Virtual Assistant. How may I help you today?' }]
+        }];
+
+        // Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.getElementById('slider-dots');
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+
+        const slideContent = [
+            {
+                title: 'Empowering <br /> <span class="text-gold-500 italic">Minds</span>',
+                desc: '"Empowering minds, inspiring futures" — committed to academic excellence and holistic development in the heart of Pokhara.'
+            },
+            {
+                title: 'Modern <br /> <span class="text-gold-500 italic">Education</span>',
+                desc: 'Providing state-of-the-art laboratories, libraries, and a conducive learning environment for every student.'
+            },
+            {
+                title: 'Holistic <br /> <span class="text-gold-500 italic">Growth</span>',
+                desc: 'From sports to arts, we nurture talent and character through a wide range of extra-curricular activities.'
+            }
+        ];
+
+        function updateSlider() {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('opacity-100', i === currentSlide);
+                slide.classList.toggle('opacity-0', i !== currentSlide);
+                slide.classList.toggle('slide-active', i === currentSlide);
+            });
+
+            // Update dots
+            const dotsContainer = document.getElementById('slider-dots');
+            dotsContainer.innerHTML = slideContent.map((_, i) => `
+                <div class="w-1 transition-all duration-500 ${i === currentSlide ? 'bg-gold-500 h-8' : 'bg-white/40 h-4'} rounded-full"></div>
+            `).join('');
+
+            // Update content with fade effect
+            heroTitle.style.opacity = 0;
+            heroTitle.style.transform = 'translateY(20px)';
+            heroDesc.style.opacity = 0;
+            heroDesc.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                heroTitle.innerHTML = slideContent[currentSlide].title;
+                heroDesc.innerHTML = slideContent[currentSlide].desc;
+                heroTitle.style.opacity = 1;
+                heroTitle.style.transform = 'translateY(0)';
+                heroDesc.style.opacity = 1;
+                heroDesc.style.transform = 'translateY(0)';
+            }, 200);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlider();
+        }
+
+        setInterval(nextSlide, 6000);
+        updateSlider(); // Initialize slider dots and state
+
+        function toggleChat() {
+            isChatOpen = !isChatOpen;
+            if (isChatOpen) {
+                assistantWindow.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none', 'w-0', 'h-0');
+                assistantWindow.classList.add('opacity-100', 'translate-y-0', 'w-[90vw]', 'h-[80vh]', 'md:w-[400px]', 'md:h-[600px]');
+                assistantToggle.classList.add('scale-0', 'opacity-0');
+                assistantToggle.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => chatInput.focus(), 300);
+            } else {
+                assistantWindow.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none', 'w-0', 'h-0');
+                assistantWindow.classList.remove('opacity-100', 'translate-y-0', 'w-[90vw]', 'h-[80vh]', 'md:w-[400px]', 'md:h-[600px]');
+                assistantToggle.classList.remove('scale-0', 'opacity-0');
+                assistantToggle.classList.add('scale-100', 'opacity-100');
+            }
+        }
+
+        assistantToggle.addEventListener('click', toggleChat);
+        chatMinimize.addEventListener('click', toggleChat);
+
+        chatInput.addEventListener('input', (e) => {
+            chatSend.disabled = !e.target.value.trim();
+        });
+
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !chatSend.disabled) {
+                handleSend();
+            }
+        });
+
+        chatSend.addEventListener('click', handleSend);
+
+        function appendMessage(role, text) {
+            const isUser = role === 'user';
+            const alignClass = isUser ? 'justify-end' : 'justify-start';
+            const bubbleClass = isUser 
+                ? 'bg-slate-800 text-white rounded-br-none' 
+                : 'bg-white text-gray-800 border border-gray-100 rounded-bl-none';
+            const timeAlign = isUser ? 'text-right' : 'text-left';
+            
+            const html = `
+                <div class="flex ${alignClass}">
+                    <div class="max-w-[85%] rounded-2xl p-3 text-sm leading-relaxed shadow-sm ${bubbleClass}">
+                        ${text}
+                        <div class="text-[10px] mt-1 opacity-50 ${timeAlign}">
+                            ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            chatMessages.insertAdjacentHTML('beforeend', html);
+            chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+        }
+
+        function showLoading() {
+            const html = `
+                <div class="flex justify-start w-full" id="loading-bubble">
+                    <div class="bg-white border border-gray-100 rounded-2xl rounded-bl-none p-4 shadow-sm">
+                        <div class="flex space-x-1">
+                            <div class="w-2 h-2 bg-royal-800 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+                            <div class="w-2 h-2 bg-royal-800 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+                            <div class="w-2 h-2 bg-royal-800 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatMessages.insertAdjacentHTML('beforeend', html);
+            chatMessages.scrollTo({ top: chatMessages.scrollHeight, behavior: 'smooth' });
+        }
+
+        function removeLoading() {
+            const loader = document.getElementById('loading-bubble');
+            if (loader) loader.remove();
+        }
+
+        async function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            // UI Updates
+            chatInput.value = '';
+            chatSend.disabled = true;
+            appendMessage('user', text);
+            showLoading();
+            sendIcon.classList.add('hidden');
+            loadingIcon.classList.remove('hidden');
+
+            // API Call
+            try {
+                const responseText = await callGeminiAPI(text);
+                removeLoading();
+                appendMessage('model', responseText);
+            } catch (error) {
+                removeLoading();
+                appendMessage('model', "I'm having trouble connecting to the network.");
+                console.error(error);
+            } finally {
+                sendIcon.classList.remove('hidden');
+                loadingIcon.classList.add('hidden');
+                chatInput.focus();
+            }
+        }
+
+        const SYSTEM_INSTRUCTION = `
+        You are the "Hillside Assistant," a helpful, knowledgeable, and professional AI guide for Hillside English School in Pokhara, Nepal.
+        Your tone should be academic, polite, and encouraging.
+        You can answer questions about admissions (Pre-primary to Class 10), the Principal (Mr. Dili Ram Bhattarai), location (Malepatan-12), and school activities.
+        The school motto is "Empowering minds, inspiring futures".
+        If asked about specific tuition fees or application deadlines, provide general estimates but advise checking the official admissions page or contacting the school office at 985-6031780.
+        Briefly summarize answers to keep the chat conversational.
+        Do not make up facts if you don't know them; politely suggest contacting the main office.
+        `;
+
+        async function callGeminiAPI(userText) {
+            const apiKey = process.env.API_KEY;
+            if (!apiKey) return "API Key is missing. I cannot connect to the server.";
+
+            const ai = new GoogleGenAI({ apiKey });
+            
+            // Build history for the SDK
+            const history = chatHistory.map(msg => ({
+                role: msg.role,
+                parts: msg.parts
+            }));
+
+            const chat = ai.chats.create({
+                model: 'gemini-3-flash-preview',
+                config: {
+                    systemInstruction: SYSTEM_INSTRUCTION,
+                    temperature: 0.7,
+                },
+                history: history,
+            });
+
+            const result = await chat.sendMessage({ message: userText });
+            const responseText = result.text || "I didn't understand that.";
+            
+            // Update local history
+            chatHistory.push({ role: 'user', parts: [{ text: userText }] });
+            chatHistory.push({ role: 'model', parts: [{ text: responseText }] });
+
+            return responseText;
+        }
+    </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
