@@ -196,9 +196,9 @@
 
     <main>
         <!-- HERO -->
-        <section id="home" class="relative overflow-hidden bg-stone-50 md:bg-black">
+        <section id="home" class="relative bg-black">
             <!-- Unified Background Slider -->
-            <div id="hero-slider" class="absolute top-0 left-0 right-0 h-[75vh] md:h-full z-0 bg-black">
+            <div id="hero-slider" class="absolute top-0 left-0 right-0 h-full z-0 bg-black overflow-hidden">
                 <div class="slide absolute inset-0 transition-opacity duration-1000 opacity-100 slide-active">
                     <img src="https://picsum.photos/1920/1080?seed=school1" alt="Hillside School" class="w-full h-full object-cover opacity-60" />
                 </div>
@@ -213,8 +213,8 @@
 
             <div class="relative z-10 max-w-[1200px] mx-auto px-6 text-center">
                 <!-- Main Content Area (Fits within slider height on mobile) -->
-                <div class="h-[75vh] md:h-screen flex flex-col justify-center items-center py-20 md:py-0">
-                    <h1 id="hero-title" class="text-6xl md:text-6xl lg:text-8xl font-serif font-bold text-white mb-6 md:mb-8 leading-[1.1] md:leading-[1] transition-all duration-700 tracking-tight">
+                <div class="h-[75vh] md:h-screen min-h-[600px] md:min-h-screen flex flex-col justify-center items-center pt-20 pb-12 md:pt-32 md:pb-52">
+                    <h1 id="hero-title" class="text-5xl md:text-6xl lg:text-8xl font-serif font-bold text-white mb-6 md:mb-8 leading-[1.1] md:leading-[1] transition-all duration-700 tracking-tight">
                         Empowering <br class="hidden md:block" />
                         <span class="text-gold-500 italic">Minds</span>
                     </h1>
@@ -235,44 +235,65 @@
                     </div>
                 </div>
 
-                <!-- Redesigned Stats Section -->
-                <div class="relative md:absolute md:bottom-20 md:left-1/2 md:-translate-x-1/2 w-full max-w-3xl mx-auto px-8 pb-12 md:pb-0 -mt-10 md:mt-0">
-                    <div class="bg-white md:bg-white/5 md:backdrop-blur-xl p-4 md:p-6 rounded-[2rem] md:rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.06)] md:shadow-none border border-zinc-100 md:border-white/10 grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2 items-center">
-                        <div class="text-center md:border-r md:border-white/10 px-1">
-                            <div class="flex justify-center mb-1.5 md:hidden">
-                                <div class="bg-royal-50 p-1 rounded-lg text-royal-800">
-                                    <i data-lucide="users" class="w-3.5 h-3.5"></i>
+                <!-- Stats Section (Floating Overlap) -->
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[92%] max-w-4xl px-4 z-30">
+                    <!-- Mobile View: Compact White Card -->
+                    <div class="md:hidden bg-white p-5 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] grid grid-cols-2 gap-y-8 gap-x-2 items-center border border-gray-50">
+                        <div class="text-center px-1">
+                            <div class="flex justify-center mb-2">
+                                <div class="bg-royal-50 p-2 rounded-xl text-royal-800">
+                                    <i data-lucide="users" class="w-4 h-4"></i>
                                 </div>
                             </div>
-                            <div class="text-xl md:text-3xl font-serif font-bold text-royal-800 md:text-gold-500 mb-0">1.2K+</div>
-                            <div class="text-[8px] text-zinc-400 md:text-gray-400 uppercase tracking-widest font-bold">Students</div>
-                        </div>
-                        <div class="text-center md:border-r md:border-white/10 px-1">
-                            <div class="flex justify-center mb-1.5 md:hidden">
-                                <div class="bg-royal-50 p-1 rounded-lg text-royal-800">
-                                    <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
-                                </div>
-                            </div>
-                            <div class="text-xl md:text-3xl font-serif font-bold text-royal-800 md:text-gold-500 mb-0">85+</div>
-                            <div class="text-[8px] text-zinc-400 md:text-gray-400 uppercase tracking-widest font-bold">Teachers</div>
-                        </div>
-                        <div class="text-center md:border-r md:border-white/10 px-1">
-                            <div class="flex justify-center mb-1.5 md:hidden">
-                                <div class="bg-royal-50 p-1 rounded-lg text-royal-800">
-                                    <i data-lucide="award" class="w-3.5 h-3.5"></i>
-                                </div>
-                            </div>
-                            <div class="text-xl md:text-3xl font-serif font-bold text-royal-800 md:text-gold-500 mb-0">100%</div>
-                            <div class="text-[8px] text-zinc-400 md:text-gray-400 uppercase tracking-widest font-bold">SEE Result</div>
+                            <div class="text-xl font-serif font-bold text-royal-800 mb-0.5">1.2K+</div>
+                            <div class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Students</div>
                         </div>
                         <div class="text-center px-1">
-                            <div class="flex justify-center mb-1.5 md:hidden">
-                                <div class="bg-royal-50 p-1 rounded-lg text-royal-800">
-                                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                            <div class="flex justify-center mb-2">
+                                <div class="bg-royal-50 p-2 rounded-xl text-royal-800">
+                                    <i data-lucide="graduation-cap" class="w-4 h-4"></i>
                                 </div>
                             </div>
-                            <div class="text-xl md:text-3xl font-serif font-bold text-royal-800 md:text-gold-500 mb-0">25+</div>
-                            <div class="text-[8px] text-zinc-400 md:text-gray-400 uppercase tracking-widest font-bold">Years</div>
+                            <div class="text-xl font-serif font-bold text-royal-800 mb-0.5">85+</div>
+                            <div class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Teachers</div>
+                        </div>
+                        <div class="text-center px-1">
+                            <div class="flex justify-center mb-2">
+                                <div class="bg-royal-50 p-2 rounded-xl text-royal-800">
+                                    <i data-lucide="award" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <div class="text-xl font-serif font-bold text-royal-800 mb-0.5">100%</div>
+                            <div class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">SEE Result</div>
+                        </div>
+                        <div class="text-center px-1">
+                            <div class="flex justify-center mb-2">
+                                <div class="bg-royal-50 p-2 rounded-xl text-royal-800">
+                                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+                            <div class="text-xl font-serif font-bold text-royal-800 mb-0.5">25+</div>
+                            <div class="text-[9px] text-gray-400 uppercase tracking-widest font-bold">Years</div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop View: Glass Bar (Also overlapping for consistency) -->
+                    <div class="hidden md:grid bg-white/10 backdrop-blur-2xl p-6 rounded-full border border-white/20 grid-cols-4 gap-x-2 items-center shadow-2xl">
+                        <div class="text-center border-r border-white/20 px-1">
+                            <div class="text-3xl font-serif font-bold text-gold-500 mb-0">1.2K+</div>
+                            <div class="text-gray-300 uppercase tracking-widest font-bold text-[10px]">Students</div>
+                        </div>
+                        <div class="text-center border-r border-white/20 px-1">
+                            <div class="text-3xl font-serif font-bold text-gold-500 mb-0">85+</div>
+                            <div class="text-gray-300 uppercase tracking-widest font-bold text-[10px]">Teachers</div>
+                        </div>
+                        <div class="text-center border-r border-white/20 px-1">
+                            <div class="text-3xl font-serif font-bold text-gold-500 mb-0">100%</div>
+                            <div class="text-gray-300 uppercase tracking-widest font-bold text-[10px]">SEE Result</div>
+                        </div>
+                        <div class="text-center px-1">
+                            <div class="text-3xl font-serif font-bold text-gold-500 mb-0">25+</div>
+                            <div class="text-gray-300 uppercase tracking-widest font-bold text-[10px]">Years</div>
                         </div>
                     </div>
                 </div>
@@ -285,11 +306,19 @@
         </section>
 
         <!-- ABOUT SECTION -->
-        <section id="about" class="py-8 md:py-12 bg-white scroll-mt-28 overflow-hidden">
+        <section id="about" class="relative pt-32 pb-12 md:pt-40 md:pb-20 bg-white scroll-mt-28 overflow-hidden">
             <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16">
-                <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center">
-                    <!-- Image Side -->
-                    <div class="w-full lg:w-1/2 order-2 lg:order-1 relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-10 lg:gap-x-20 items-center">
+                    <!-- Heading -->
+                    <div class="order-1 lg:order-1">
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-5 leading-tight">
+                            Nurturing Potential, <br/>
+                            <span class="text-gold-500 italic">Inspiring Excellence</span>
+                        </h2>
+                    </div>
+
+                    <!-- Image Side (Between heading and text on mobile) -->
+                    <div class="order-2 lg:order-2 lg:row-span-2 relative my-8 lg:my-0">
                         <!-- Main Image -->
                         <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] group">
                             <img src="https://picsum.photos/1200/900?seed=school_campus" alt="Hillside School Campus" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -314,13 +343,8 @@
                         </div>
                     </div>
 
-                    <!-- Content Side -->
-                    <div class="w-full lg:w-1/2 order-1 lg:order-2">
-                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-5 leading-tight">
-                            Nurturing Potential, <br/>
-                            <span class="text-gold-500 italic">Inspiring Excellence</span>
-                        </h2>
-
+                    <!-- Text Content -->
+                    <div class="order-3 lg:order-3">
                         <div class="space-y-3 text-gray-600 text-sm md:text-base leading-relaxed">
                             <p>
                                 Hillside English School, located in the peaceful environment of Malepatan, Pokhara, is dedicated to providing quality education. We create an atmosphere where students can grow intellectually, socially, and emotionally.
@@ -346,92 +370,81 @@
         </section>
 
         <!-- PRINCIPAL MESSAGE SECTION -->
-        <section class="py-10 md:py-16 bg-royal-50 border-t border-royal-100 scroll-mt-28">
-            <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
-                <div class="flex flex-col md:flex-row items-center gap-8 lg:gap-16">
-                     <!-- Principal Image -->
-                     <div class="w-full md:w-1/3 flex justify-center md:justify-end">
-                        <div class="relative w-40 md:w-56">
-                            <div class="absolute inset-0 bg-gold-500 rounded-full blur-3xl opacity-20"></div>
-                            <img src="https://picsum.photos/400/500?random=principal_portrait" alt="Mr. Dili Ram Bhattarai" class="relative rounded-lg shadow-2xl w-full object-cover aspect-[3/4] border-4 border-white" />
-                        </div>
-                     </div>
-                     
-                     <!-- Principal Content -->
-                     <div class="w-full md:w-2/3">
-                        <div class="flex items-center space-x-2 mb-4 md:mb-5">
-                             <i data-lucide="quote" class="text-gold-500 w-6 h-6 md:w-8 md:h-8 fill-current opacity-80"></i>
-                             <h4 class="text-royal-800 font-bold uppercase tracking-widest text-[10px] md:text-xs ml-2">Message from the Principal</h4>
-                        </div>
-                        
-                        <h2 class="text-2xl md:text-3xl font-serif font-bold text-slate-900 mb-3 md:mb-4">
-                            Mr. Dili Ram Bhattarai
-                        </h2>
-                        
-                        <div class="prose prose-lg text-gray-600 mb-4 md:mb-6">
-                            <p class="italic text-gray-700 text-base md:text-lg leading-relaxed mb-3 md:mb-4 font-serif border-l-4 border-gold-500 pl-4 md:pl-6">
-                            "Education is the most powerful weapon which you can use to change the world. At Hillside English School, we strive not just for academic grades, but for character building."
-                            </p>
-                            <p class="leading-relaxed text-xs md:text-sm">
-                                We believe in fostering a community where every child feels valued, understood, and challenged to be their best self. Our journey over the last 25 years has been one of constant evolution, blending traditional values with modern educational practices.
-                            </p>
-                        </div>
-                        
-                        <div class="flex items-end">
-                             <div class="text-royal-800 font-script text-lg md:text-xl opacity-80" style="font-family: 'Brush Script MT', cursive;">Dili Ram Bhattarai</div>
-                             <span class="ml-4 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest mb-1">Principal</span>
-                        </div>
-                     </div>
-                </div>
+        <section class="py-16 md:py-24 bg-white scroll-mt-28 relative overflow-hidden">
+            <!-- Decorative background elements -->
+            <div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-5">
+                <div class="absolute top-10 left-10 w-64 h-64 bg-royal-800 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-10 right-10 w-96 h-96 bg-gold-500 rounded-full blur-3xl"></div>
             </div>
-        </section>
 
-        <!-- ACADEMIC SECTION -->
-        <section id="academics" class="py-12 md:py-20 bg-stone-50 scroll-mt-28 overflow-hidden">
-            <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
-                <div class="text-center mb-10">
-                    <div class="flex items-center justify-center space-x-3 mb-3">
-                        <span class="w-8 h-[1px] bg-gold-500"></span>
-                        <span class="text-gold-500 font-bold uppercase tracking-widest text-[10px]">Our Educational Levels</span>
-                        <span class="w-8 h-[1px] bg-gold-500"></span>
-                    </div>
-                    <h2 class="text-2xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
-                        Academic <span class="text-gold-500 italic">Excellence</span>
-                    </h2>
-                </div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
+                <div class="bg-stone-50 rounded-[3rem] overflow-hidden shadow-2xl border border-stone-100">
+                    <div class="flex flex-col lg:flex-row">
+                        <!-- Image Side -->
+                        <div class="lg:w-2/5 flex items-center justify-center p-8 md:p-12 lg:p-16 bg-stone-100/50 relative overflow-hidden">
+                            <!-- Background decorative text -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
+                                <span class="text-[15rem] font-serif font-bold text-royal-800">HES</span>
+                            </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-200 rounded-[2rem] overflow-hidden bg-white shadow-2xl">
-                    <!-- Pre-Primary -->
-                    <div class="group p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center text-center transition-all duration-500 hover:bg-stone-50">
-                        <div class="w-14 h-14 bg-gold-500/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500">
-                            <i data-lucide="baby" class="text-gold-500 w-7 h-7"></i>
+                            <div class="relative group">
+                                <!-- Passport Photo Frame -->
+                                <div class="w-48 h-60 md:w-64 md:h-80 bg-white p-3 shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-stone-200 transition-transform duration-500 group-hover:-rotate-2 relative z-10">
+                                    <img src="https://picsum.photos/800/1000?seed=principal_portrait" alt="Mr. Dili Ram Bhattarai" class="w-full h-full object-cover transition-all duration-700" />
+                                    <!-- Subtle photo texture overlay -->
+                                    <div class="absolute inset-3 bg-black/5 pointer-events-none"></div>
+                                </div>
+                                
+                                <!-- Decorative Elements -->
+                                <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-gold-500/10 rounded-full blur-2xl -z-10"></div>
+                                <div class="absolute -top-6 -left-6 w-20 h-20 border-t-2 border-l-2 border-gold-500/30 -z-10"></div>
+                                
+                                <!-- Floating Badge -->
+                                <div class="absolute -bottom-4 -left-4 bg-royal-800 text-white p-4 rounded-xl shadow-xl z-20 transform -rotate-3 group-hover:rotate-0 transition-transform">
+                                    <p class="text-[9px] font-bold uppercase tracking-widest opacity-60">Principal</p>
+                                    <p class="text-sm font-serif font-bold">Since 1998</p>
+                                </div>
+                            </div>
                         </div>
-                        <span class="text-gray-300 font-serif text-3xl mb-2">01</span>
-                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2">Pre-Primary</h3>
-                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
-                        <p class="text-gray-500 font-light text-sm">Nursery to UKG</p>
-                    </div>
 
-                    <!-- Basic Level -->
-                    <div class="group p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center text-center transition-all duration-500 hover:bg-royal-900 hover:text-white">
-                        <div class="w-14 h-14 bg-gold-500 rounded-2xl flex items-center justify-center mb-5 shadow-lg shadow-gold-500/20 group-hover:scale-110 transition-transform duration-500">
-                            <i data-lucide="book-open" class="text-white w-7 h-7"></i>
-                        </div>
-                        <span class="text-gray-200 group-hover:text-white/20 font-serif text-3xl mb-2 transition-colors">02</span>
-                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 group-hover:text-white mb-2 transition-colors">Basic Level</h3>
-                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
-                        <p class="text-gray-500 group-hover:text-gray-300 font-light text-sm transition-colors">Grade 1 to 8</p>
-                    </div>
+                        <!-- Content Side -->
+                        <div class="lg:w-3/5 p-8 md:p-16 lg:p-20 relative">
+                            <!-- Large background quote mark -->
+                            <div class="absolute top-10 right-10 text-royal-800/5 pointer-events-none">
+                                <i data-lucide="quote" class="w-40 h-40 md:w-64 md:h-64 fill-current"></i>
+                            </div>
 
-                    <!-- Secondary Level -->
-                    <div class="group p-8 md:p-10 flex flex-col items-center text-center transition-all duration-500 hover:bg-stone-50">
-                        <div class="w-14 h-14 bg-royal-800/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500">
-                            <i data-lucide="graduation-cap" class="text-royal-800 w-7 h-7"></i>
+                            <div class="relative z-10">
+                                <div class="flex items-center gap-3 mb-8">
+                                    <span class="w-10 h-[2px] bg-gold-500"></span>
+                                    <span class="text-gold-500 font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs">Principal's Perspective</span>
+                                </div>
+
+                                <h2 class="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-8 leading-tight">
+                                    A Message from <br/>
+                                    <span class="text-royal-800 italic">the Principal</span>
+                                </h2>
+
+                                <div class="space-y-6 text-gray-600 text-lg font-light leading-relaxed mb-12">
+                                    <p class="text-xl md:text-2xl text-slate-800 font-serif italic border-l-4 border-gold-500 pl-8 mb-8">
+                                        "Education is the most powerful weapon which you can use to change the world. At Hillside, we strive for character, not just grades."
+                                    </p>
+                                    <p>
+                                        We believe in fostering a community where every child feels valued, understood, and challenged to be their best self. Our journey over the last 25 years has been one of constant evolution, blending traditional values with modern educational practices.
+                                    </p>
+                                </div>
+
+                                <div class="flex items-center gap-6">
+                                    <div>
+                                        <h4 class="text-xl font-serif font-bold text-slate-900 leading-none mb-1">Mr. Dili Ram Bhattarai</h4>
+                                        <p class="text-[10px] font-bold text-gold-500 uppercase tracking-[0.2em]">Principal & Founder</p>
+                                    </div>
+                                    <div class="ml-auto hidden md:block">
+                                        <div class="text-3xl font-script text-royal-800/40" style="font-family: 'Brush Script MT', cursive;">Dili Ram Bhattarai</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="text-gray-300 font-serif text-3xl mb-2">03</span>
-                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2">Secondary</h3>
-                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
-                        <p class="text-gray-500 font-light text-sm">Grade 9 and 10</p>
                     </div>
                 </div>
             </div>
@@ -517,13 +530,248 @@
             </div>
         </section>
 
+        <!-- ACADEMIC SECTION -->
+        <section id="academics" class="py-12 md:py-20 bg-stone-50 scroll-mt-28 overflow-hidden">
+            <div class="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-16">
+                <div class="text-center mb-10">
+                    <div class="flex items-center justify-center space-x-3 mb-3">
+                        <span class="w-8 h-[1px] bg-gold-500"></span>
+                        <span class="text-gold-500 font-bold uppercase tracking-widest text-[10px]">Our Educational Levels</span>
+                        <span class="w-8 h-[1px] bg-gold-500"></span>
+                    </div>
+                    <h2 class="text-2xl md:text-4xl font-serif font-bold text-slate-900 leading-tight">
+                        Academic <span class="text-gold-500 italic">Excellence</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-200 rounded-[2rem] overflow-hidden bg-white shadow-2xl">
+                    <!-- Pre-Primary -->
+                    <div class="group p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center text-center transition-all duration-500 hover:bg-stone-50">
+                        <div class="w-14 h-14 bg-gold-500/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="baby" class="text-gold-500 w-7 h-7"></i>
+                        </div>
+                        <span class="text-gray-300 font-serif text-3xl mb-2">01</span>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2">Pre-Primary</h3>
+                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
+                        <p class="text-gray-500 font-light text-sm">Nursery to UKG</p>
+                    </div>
+
+                    <!-- Basic Level -->
+                    <div class="group p-8 md:p-10 border-b md:border-b-0 md:border-r border-gray-100 flex flex-col items-center text-center transition-all duration-500 hover:bg-royal-900 hover:text-white">
+                        <div class="w-14 h-14 bg-gold-500 rounded-2xl flex items-center justify-center mb-5 shadow-lg shadow-gold-500/20 group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="book-open" class="text-white w-7 h-7"></i>
+                        </div>
+                        <span class="text-gray-200 group-hover:text-white/20 font-serif text-3xl mb-2 transition-colors">02</span>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 group-hover:text-white mb-2 transition-colors">Basic Level</h3>
+                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
+                        <p class="text-gray-500 group-hover:text-gray-300 font-light text-sm transition-colors">Grade 1 to 8</p>
+                    </div>
+
+                    <!-- Secondary Level -->
+                    <div class="group p-8 md:p-10 flex flex-col items-center text-center transition-all duration-500 hover:bg-stone-50">
+                        <div class="w-14 h-14 bg-royal-800/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-500">
+                            <i data-lucide="graduation-cap" class="text-royal-800 w-7 h-7"></i>
+                        </div>
+                        <span class="text-gray-300 font-serif text-3xl mb-2">03</span>
+                        <h3 class="text-xl md:text-2xl font-serif font-bold text-slate-900 mb-2">Secondary</h3>
+                        <div class="h-1 w-8 bg-gold-500 mb-3 mx-auto"></div>
+                        <p class="text-gray-500 font-light text-sm">Grade 9 and 10</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="apply" class="py-12 md:py-20 bg-white border-t border-zinc-100 scroll-mt-28 relative overflow-hidden">
+            <!-- Subtle background detail -->
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-zinc-50/50 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    <div class="flex flex-col">
+                        <!-- Heading -->
+                        <div class="order-1 animate-fade-in-up">
+                            <div class="flex items-center gap-4 mb-8">
+                                <span class="w-12 h-[1px] bg-royal-800"></span>
+                                <span class="text-royal-800 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">Admissions 2025</span>
+                            </div>
+                            
+                            <h2 class="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-zinc-900 leading-[0.85] tracking-tighter mb-10">
+                                The Future <br/>
+                                <span class="italic text-royal-800">Starts</span> <br/>
+                                Here.
+                            </h2>
+                        </div>
+
+                        <!-- Mobile Image (Visible only on mobile) -->
+                        <div class="order-2 lg:hidden mb-12 relative animate-fade-in-up" style="animation-delay: 0.1s">
+                            <div class="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl border-4 border-white relative z-10">
+                                <img 
+                                    src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop" 
+                                    alt="Hillside Student" 
+                                    class="w-full h-full object-cover grayscale transition-all duration-1000"
+                                />
+                            </div>
+                            <div class="absolute -bottom-6 -right-6 bg-royal-800 text-white p-6 rounded-[2rem] shadow-lg z-20 max-w-[200px]">
+                                <i data-lucide="quote" class="w-6 h-6 text-white/20 mb-2"></i>
+                                <p class="text-sm font-serif italic leading-tight">"Excellence is not an act, but a habit."</p>
+                            </div>
+                        </div>
+
+                        <!-- Description + Button -->
+                        <div class="order-3 animate-fade-in-up" style="animation-delay: 0.2s">
+                            <p class="text-zinc-500 text-lg md:text-xl max-w-lg leading-relaxed mb-12 font-light">
+                                Join a community where academic rigor meets holistic growth. Secure your child's place in our legacy of excellence.
+                            </p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-6">
+                                <button onclick="openApplyModal()" class="group relative bg-royal-800 text-white px-10 py-5 rounded-full font-bold text-lg transition-all duration-500 hover:bg-zinc-900 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-2xl shadow-royal-800/20">
+                                    Apply for Admission
+                                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Image (Hidden on mobile) -->
+                    <div class="hidden lg:block relative animate-fade-in-up" style="animation-delay: 0.2s">
+                        <!-- Main Image with custom border radius -->
+                        <div class="aspect-[4/5] rounded-[3rem] md:rounded-[4rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] border-8 border-white relative z-10">
+                            <img 
+                                src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop" 
+                                alt="Hillside Student" 
+                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                            />
+                        </div>
+                        
+                        <!-- Floating Quote Card -->
+                        <div class="absolute -bottom-10 -right-10 md:-right-16 bg-royal-800 text-white p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl max-w-xs md:max-w-sm z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                            <i data-lucide="quote" class="w-10 h-10 text-white/20 mb-4"></i>
+                            <p class="text-xl md:text-2xl font-serif italic leading-tight mb-6">
+                                "Excellence is not an act, but a habit."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-[1px] bg-white/30"></div>
+                                <p class="text-[10px] uppercase tracking-[0.3em] font-bold opacity-60">Aristotle</p>
+                            </div>
+                        </div>
+
+                        <!-- Decorative background circle -->
+                        <div class="absolute -top-10 -left-10 w-32 h-32 bg-zinc-100 rounded-full -z-0"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="py-16 md:py-24 bg-zinc-950 relative overflow-hidden scroll-mt-28">
+            <!-- Atmospheric background -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-0 left-1/4 w-[800px] h-[800px] bg-royal-900/10 rounded-full blur-[150px]"></div>
+                <div class="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-gold-900/5 rounded-full blur-[150px]"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
+                <div class="text-center mb-16">
+                    <div class="flex items-center justify-center space-x-4 mb-6">
+                        <span class="w-12 h-[1px] bg-gold-500/30"></span>
+                        <span class="text-gold-500 font-bold uppercase tracking-[0.6em] text-[10px] md:text-xs">Voices of Excellence</span>
+                        <span class="w-12 h-[1px] bg-gold-500/30"></span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[0.9] tracking-tighter">
+                        What Our <span class="italic text-gold-500">Students Say</span>
+                    </h2>
+                </div>
+
+                <div id="testimonial-slider" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-8 pb-12">
+                    <!-- Testimonial 1 -->
+                    <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-21px)] snap-start">
+                        <div class="group relative bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] hover:bg-white/10 hover:border-white/20 transition-all duration-700 flex flex-col h-full">
+                            <div class="absolute top-8 right-10 text-gold-500/10 group-hover:text-gold-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-8 scale-100 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg md:text-xl font-serif italic text-zinc-300 leading-relaxed mb-10">
+                                "The science laboratories at Hillside are exceptional. The practical approach to learning physics and chemistry has really helped me prepare for my SEE exams with confidence."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-5">
+                                <img src="https://picsum.photos/100/100?seed=student1" alt="Aarav Shrestha" class="w-14 h-14 rounded-full grayscale group-hover:grayscale-0 transition-all duration-700 border-2 border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-base">Aarav Shrestha</h4>
+                                    <p class="text-gold-500 text-[10px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-21px)] snap-start">
+                        <div class="group relative bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] hover:bg-white/10 hover:border-white/20 transition-all duration-700 flex flex-col h-full">
+                            <div class="absolute top-8 right-10 text-royal-500/10 group-hover:text-royal-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-8 scale-100 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg md:text-xl font-serif italic text-zinc-300 leading-relaxed mb-10">
+                                "Teachers here don't just teach from books; they mentor us. The extra coaching classes gave me the confidence to aim for a GPA of 4.0."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-5">
+                                <img src="https://picsum.photos/100/100?seed=student2" alt="Priya Sharma" class="w-14 h-14 rounded-full grayscale group-hover:grayscale-0 transition-all duration-700 border-2 border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-base">Priya Sharma</h4>
+                                    <p class="text-gold-500 text-[10px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-21px)] snap-start">
+                        <div class="group relative bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] hover:bg-white/10 hover:border-white/20 transition-all duration-700 flex flex-col h-full">
+                            <div class="absolute top-8 right-10 text-gold-500/10 group-hover:text-gold-500/20 transition-colors">
+                                <i data-lucide="quote" class="w-12 h-12"></i>
+                            </div>
+                            <div class="flex text-gold-500 mb-8 scale-100 origin-left">
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                            </div>
+                            <blockquote class="text-lg md:text-xl font-serif italic text-zinc-300 leading-relaxed mb-10">
+                                "I joined for the academics, but I stayed for the community. The balance between studies and sports like football is perfect at Hillside."
+                            </blockquote>
+                            <div class="mt-auto flex items-center gap-5">
+                                <img src="https://picsum.photos/100/100?seed=student3" alt="Rohan Gurung" class="w-14 h-14 rounded-full grayscale group-hover:grayscale-0 transition-all duration-700 border-2 border-white/10" />
+                                <div>
+                                    <h4 class="text-white font-bold text-base">Rohan Gurung</h4>
+                                    <p class="text-gold-500 text-[10px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- NOTICE BOARD -->
         <section id="notices" class="py-12 md:py-20 bg-stone-50 scroll-mt-28 relative overflow-hidden">
             <!-- Decorative background elements -->
             <div class="absolute top-0 right-0 w-1/3 h-full bg-royal-800/5 -skew-x-12 translate-x-1/2 pointer-events-none"></div>
             
             <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-                <div class="flex flex-col lg:flex-row justify-between items-end mb-12 gap-8">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 gap-8">
                     <div class="max-w-2xl">
                         <div class="flex items-center space-x-3 mb-4">
                             <span class="w-12 h-[2px] bg-royal-800"></span>
@@ -682,189 +930,8 @@
                     </div>
                 </div>
             </div>
-        </section>        <!-- TESTIMONIALS -->
-        <section class="py-16 md:py-24 bg-zinc-950 relative overflow-hidden scroll-mt-28">
-            <!-- Atmospheric background -->
-            <div class="absolute inset-0 pointer-events-none">
-                <div class="absolute top-0 left-1/4 w-[800px] h-[800px] bg-royal-900/10 rounded-full blur-[150px]"></div>
-                <div class="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-gold-900/5 rounded-full blur-[150px]"></div>
-            </div>
-
-            <div class="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 relative z-10">
-                <div class="text-center mb-16">
-                    <div class="flex items-center justify-center space-x-4 mb-6">
-                        <span class="w-12 h-[1px] bg-gold-500/30"></span>
-                        <span class="text-gold-500 font-bold uppercase tracking-[0.6em] text-[10px] md:text-xs">Voices of Excellence</span>
-                        <span class="w-12 h-[1px] bg-gold-500/30"></span>
-                    </div>
-                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white leading-[0.9] tracking-tighter">
-                        What Our <span class="italic text-gold-500">Students Say</span>
-                    </h2>
-                </div>
-
-                <div id="testimonial-slider" class="flex overflow-x-auto snap-x snap-mandatory no-scrollbar gap-8 pb-12">
-                    <!-- Testimonial 1 -->
-                    <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-21px)] snap-start">
-                        <div class="group relative bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] hover:bg-white/10 hover:border-white/20 transition-all duration-700 flex flex-col h-full">
-                            <div class="absolute top-8 right-10 text-gold-500/10 group-hover:text-gold-500/20 transition-colors">
-                                <i data-lucide="quote" class="w-12 h-12"></i>
-                            </div>
-                            <div class="flex text-gold-500 mb-8 scale-100 origin-left">
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <blockquote class="text-lg md:text-xl font-serif italic text-zinc-300 leading-relaxed mb-10">
-                                "The science laboratories at Hillside are exceptional. The practical approach to learning physics and chemistry has really helped me prepare for my SEE exams with confidence."
-                            </blockquote>
-                            <div class="mt-auto flex items-center gap-5">
-                                <img src="https://picsum.photos/100/100?seed=student1" alt="Aarav Shrestha" class="w-14 h-14 rounded-full grayscale group-hover:grayscale-0 transition-all duration-700 border-2 border-white/10" />
-                                <div>
-                                    <h4 class="text-white font-bold text-base">Aarav Shrestha</h4>
-                                    <p class="text-gold-500 text-[10px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-21px)] snap-start">
-                        <div class="group relative bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] hover:bg-white/10 hover:border-white/20 transition-all duration-700 flex flex-col h-full">
-                            <div class="absolute top-8 right-10 text-royal-500/10 group-hover:text-royal-500/20 transition-colors">
-                                <i data-lucide="quote" class="w-12 h-12"></i>
-                            </div>
-                            <div class="flex text-gold-500 mb-8 scale-100 origin-left">
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <blockquote class="text-lg md:text-xl font-serif italic text-zinc-300 leading-relaxed mb-10">
-                                "Teachers here don't just teach from books; they mentor us. The extra coaching classes gave me the confidence to aim for a GPA of 4.0."
-                            </blockquote>
-                            <div class="mt-auto flex items-center gap-5">
-                                <img src="https://picsum.photos/100/100?seed=student2" alt="Priya Sharma" class="w-14 h-14 rounded-full grayscale group-hover:grayscale-0 transition-all duration-700 border-2 border-white/10" />
-                                <div>
-                                    <h4 class="text-white font-bold text-base">Priya Sharma</h4>
-                                    <p class="text-gold-500 text-[10px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="min-w-full md:min-w-[calc(50%-16px)] lg:min-w-[calc(33.333%-21px)] snap-start">
-                        <div class="group relative bg-white/5 backdrop-blur-3xl border border-white/10 p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] hover:bg-white/10 hover:border-white/20 transition-all duration-700 flex flex-col h-full">
-                            <div class="absolute top-8 right-10 text-gold-500/10 group-hover:text-gold-500/20 transition-colors">
-                                <i data-lucide="quote" class="w-12 h-12"></i>
-                            </div>
-                            <div class="flex text-gold-500 mb-8 scale-100 origin-left">
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                                <i data-lucide="star" class="w-4 h-4 fill-current"></i>
-                            </div>
-                            <blockquote class="text-lg md:text-xl font-serif italic text-zinc-300 leading-relaxed mb-10">
-                                "I joined for the academics, but I stayed for the community. The balance between studies and sports like football is perfect at Hillside."
-                            </blockquote>
-                            <div class="mt-auto flex items-center gap-5">
-                                <img src="https://picsum.photos/100/100?seed=student3" alt="Rohan Gurung" class="w-14 h-14 rounded-full grayscale group-hover:grayscale-0 transition-all duration-700 border-2 border-white/10" />
-                                <div>
-                                    <h4 class="text-white font-bold text-base">Rohan Gurung</h4>
-                                    <p class="text-gold-500 text-[10px] font-bold uppercase tracking-widest">Grade 10 • SEE 2080</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>    </section>
-
-        <!-- CTA -->
-        <section id="apply" class="py-12 md:py-20 bg-white border-t border-zinc-100 scroll-mt-28 relative overflow-hidden">
-            <!-- Subtle background detail -->
-            <div class="absolute top-0 right-0 w-1/2 h-full bg-zinc-50/50 -skew-x-12 translate-x-1/4 pointer-events-none"></div>
-            
-            <div class="max-w-7xl mx-auto px-6 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-                    <div class="flex flex-col">
-                        <!-- Heading -->
-                        <div class="order-1 animate-fade-in-up">
-                            <div class="flex items-center gap-4 mb-8">
-                                <span class="w-12 h-[1px] bg-royal-800"></span>
-                                <span class="text-royal-800 font-bold uppercase tracking-[0.4em] text-[10px] md:text-xs">Admissions 2025</span>
-                            </div>
-                            
-                            <h2 class="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-zinc-900 leading-[0.85] tracking-tighter mb-10">
-                                The Future <br/>
-                                <span class="italic text-royal-800">Starts</span> <br/>
-                                Here.
-                            </h2>
-                        </div>
-
-                        <!-- Mobile Image (Visible only on mobile) -->
-                        <div class="order-2 lg:hidden mb-12 relative animate-fade-in-up" style="animation-delay: 0.1s">
-                            <div class="aspect-[4/5] rounded-[3rem] overflow-hidden shadow-xl border-4 border-white relative z-10">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop" 
-                                    alt="Hillside Student" 
-                                    class="w-full h-full object-cover grayscale transition-all duration-1000"
-                                />
-                            </div>
-                            <div class="absolute -bottom-6 -right-6 bg-royal-800 text-white p-6 rounded-[2rem] shadow-lg z-20 max-w-[200px]">
-                                <i data-lucide="quote" class="w-6 h-6 text-white/20 mb-2"></i>
-                                <p class="text-sm font-serif italic leading-tight">"Excellence is not an act, but a habit."</p>
-                            </div>
-                        </div>
-
-                        <!-- Description + Button -->
-                        <div class="order-3 animate-fade-in-up" style="animation-delay: 0.2s">
-                            <p class="text-zinc-500 text-lg md:text-xl max-w-lg leading-relaxed mb-12 font-light">
-                                Join a community where academic rigor meets holistic growth. Secure your child's place in our legacy of excellence.
-                            </p>
-                            
-                            <div class="flex flex-col sm:flex-row gap-6">
-                                <button onclick="openApplyModal()" class="group relative bg-royal-800 text-white px-10 py-5 rounded-full font-bold text-lg transition-all duration-500 hover:bg-zinc-900 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-2xl shadow-royal-800/20">
-                                    Apply for Admission
-                                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-2 transition-transform"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Desktop Image (Hidden on mobile) -->
-                    <div class="hidden lg:block relative animate-fade-in-up" style="animation-delay: 0.2s">
-                        <!-- Main Image with custom border radius -->
-                        <div class="aspect-[4/5] rounded-[3rem] md:rounded-[4rem] overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] border-8 border-white relative z-10">
-                            <img 
-                                src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=2070&auto=format&fit=crop" 
-                                alt="Hillside Student" 
-                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-                            />
-                        </div>
-                        
-                        <!-- Floating Quote Card -->
-                        <div class="absolute -bottom-10 -right-10 md:-right-16 bg-royal-800 text-white p-8 md:p-10 rounded-[2.5rem] md:rounded-[3rem] shadow-2xl max-w-xs md:max-w-sm z-20 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                            <i data-lucide="quote" class="w-10 h-10 text-white/20 mb-4"></i>
-                            <p class="text-xl md:text-2xl font-serif italic leading-tight mb-6">
-                                "Excellence is not an act, but a habit."
-                            </p>
-                            <div class="flex items-center gap-4">
-                                <div class="w-8 h-[1px] bg-white/30"></div>
-                                <p class="text-[10px] uppercase tracking-[0.3em] font-bold opacity-60">Aristotle</p>
-                            </div>
-                        </div>
-
-                        <!-- Decorative background circle -->
-                        <div class="absolute -top-10 -left-10 w-32 h-32 bg-zinc-100 rounded-full -z-0"></div>
-                    </div>
-                </div>
-            </div>
         </section>
+
     </main>
 
     <!-- FOOTER -->
