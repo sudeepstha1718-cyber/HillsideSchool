@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx server.ts",
+    "dev": "vite",
     "build": "vite build",
     "lint": "tsc --noEmit",
     "preview": "vite preview"
@@ -16,6 +16,7 @@
     "express": "^4.22.1",
     "express-rate-limit": "^8.3.0",
     "express-session": "^1.19.0",
+    "firebase": "^12.10.0",
     "framer-motion": "^12.34.3",
     "lucide-react": "^0.563.0",
     "multer": "^2.1.1",
