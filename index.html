@@ -221,71 +221,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Mobile Menu Dropdown (Slide-out Drawer) -->
-      <div id="mobile-menu" class="fixed inset-0 z-[60] hidden">
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 opacity-0" id="menu-overlay" onclick="toggleMenu()"></div>
-        
-        <!-- Drawer -->
-        <div class="absolute top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col" id="menu-drawer">
-          <!-- Menu Header -->
-          <div class="flex justify-between items-center px-6 py-5 border-b border-gray-100">
-            <div class="flex items-center space-x-2">
-              <img src="https://placehold.co/200x200?text=LOGO" alt="Logo" class="w-8 h-8 rounded-full">
-              <span class="font-serif font-bold text-royal-800 tracking-tight">HILLSIDE</span>
-            </div>
-            <button onclick="toggleMenu()" class="p-2 bg-stone-100 rounded-full text-gray-500">
-              <i data-lucide="x" class="w-6 h-6"></i>
-            </button>
-          </div>
-
-          <!-- Menu Content -->
-          <div class="flex-1 overflow-y-auto px-6 py-8">
-            <nav class="space-y-1">
-              <button onclick="scrollToTop(); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
-                <i data-lucide="home" class="w-5 h-5 mr-4 opacity-50"></i> Home
-              </button>
-              <button onclick="scrollToSection('about'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
-                <i data-lucide="info" class="w-5 h-5 mr-4 opacity-50"></i> About Us
-              </button>
-              <button onclick="scrollToSection('academics'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
-                <i data-lucide="graduation-cap" class="w-5 h-5 mr-4 opacity-50"></i> Academics
-              </button>
-              <button onclick="scrollToSection('notices'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
-                <i data-lucide="bell" class="w-5 h-5 mr-4 opacity-50"></i> Notices
-              </button>
-              <button onclick="scrollToSection('approach'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
-                <i data-lucide="layout" class="w-5 h-5 mr-4 opacity-50"></i> Facilities
-              </button>
-              <button onclick="scrollToSection('contact'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
-                <i data-lucide="phone" class="w-5 h-5 mr-4 opacity-50"></i> Contact
-              </button>
-            </nav>
-
-            <div class="mt-8 pt-8 border-t border-gray-100">
-              <button onclick="openApplyModal(); toggleMenu();" class="w-full bg-royal-800 text-white py-4 rounded-xl font-bold shadow-lg shadow-royal-800/20 flex items-center justify-center gap-3">
-                <span>Apply Online 2081</span>
-                <i data-lucide="arrow-right" class="w-5 h-5"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Menu Footer -->
-          <div class="p-6 bg-stone-50 border-t border-gray-100">
-            <div class="flex justify-between items-center">
-              <div class="flex gap-3">
-                <a href="#" class="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-royal-800 hover:bg-royal-800 hover:text-white transition-all"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-                <a href="#" class="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-royal-800 hover:bg-royal-800 hover:text-white transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-              </div>
-              <div class="text-right">
-                <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Call Us</p>
-                <p class="text-xs font-bold text-royal-900">985-6031780</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </header>
 
     <main>
@@ -496,7 +431,6 @@
                                 <!-- Floating Badge -->
                                 <div class="absolute -bottom-4 -left-4 bg-royal-800 text-white p-4 rounded-xl shadow-xl z-20 transform -rotate-3 group-hover:rotate-0 transition-transform">
                                     <p class="text-[9px] font-bold uppercase tracking-widest opacity-60">Principal</p>
-                                    <p class="text-sm font-serif font-bold">1998</p>
                                 </div>
                             </div>
                         </div>
@@ -2038,6 +1972,70 @@
             document.getElementById('notice-detail-modal').classList.add('hidden');
         }
     </script>
+    <!-- Mobile Menu Dropdown (Slide-out Drawer) -->
+    <div id="mobile-menu" class="fixed inset-0 z-[200] hidden">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity duration-300 opacity-0" id="menu-overlay" onclick="toggleMenu()"></div>
+        
+        <!-- Drawer -->
+        <div class="absolute top-0 right-0 h-full w-[80%] max-w-sm bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col" id="menu-drawer">
+          <!-- Menu Header -->
+          <div class="flex justify-between items-center px-6 py-5 border-b border-gray-100">
+            <div class="flex items-center space-x-2">
+              <img src="https://placehold.co/200x200?text=LOGO" alt="Logo" class="w-8 h-8 rounded-full">
+              <span class="font-serif font-bold text-royal-800 tracking-tight">HILLSIDE</span>
+            </div>
+            <button onclick="toggleMenu()" class="p-2 bg-stone-100 rounded-full text-gray-500">
+              <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+          </div>
+
+          <!-- Menu Content -->
+          <div class="flex-1 overflow-y-auto px-6 py-8">
+            <nav class="space-y-1">
+              <button onclick="scrollToTop(); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
+                <i data-lucide="home" class="w-5 h-5 mr-4 opacity-50"></i> Home
+              </button>
+              <button onclick="scrollToSection('about'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
+                <i data-lucide="info" class="w-5 h-5 mr-4 opacity-50"></i> About Us
+              </button>
+              <button onclick="scrollToSection('academics'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
+                <i data-lucide="graduation-cap" class="w-5 h-5 mr-4 opacity-50"></i> Academics
+              </button>
+              <button onclick="scrollToSection('notices'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
+                <i data-lucide="bell" class="w-5 h-5 mr-4 opacity-50"></i> Notices
+              </button>
+              <button onclick="scrollToSection('approach'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
+                <i data-lucide="layout" class="w-5 h-5 mr-4 opacity-50"></i> Facilities
+              </button>
+              <button onclick="scrollToSection('contact'); toggleMenu();" class="flex items-center w-full px-4 py-4 text-lg font-semibold text-gray-700 hover:bg-royal-50 hover:text-royal-800 rounded-xl transition-all">
+                <i data-lucide="phone" class="w-5 h-5 mr-4 opacity-50"></i> Contact
+              </button>
+            </nav>
+
+            <div class="mt-8 pt-8 border-t border-gray-100">
+              <button onclick="openApplyModal(); toggleMenu();" class="w-full bg-royal-800 text-white py-4 rounded-xl font-bold shadow-lg shadow-royal-800/20 flex items-center justify-center gap-3">
+                <span>Apply Online 2081</span>
+                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Menu Footer -->
+          <div class="p-6 bg-stone-50 border-t border-gray-100">
+            <div class="flex justify-between items-center">
+              <div class="flex gap-3">
+                <a href="#" class="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-royal-800 hover:bg-royal-800 hover:text-white transition-all"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                <a href="#" class="w-9 h-9 rounded-lg bg-white border border-gray-200 flex items-center justify-center text-royal-800 hover:bg-royal-800 hover:text-white transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+              </div>
+              <div class="text-right">
+                <p class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Call Us</p>
+                <p class="text-xs font-bold text-royal-900">985-6031780</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
     <!-- STATIC POPUP SYSTEM (END) -->
 </body>
 </html>
