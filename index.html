@@ -211,8 +211,12 @@
                 <i data-lucide="search" class="w-6 h-6"></i>
              </button>
             <button id="mobile-menu-btn" onclick="toggleMenu()" class="text-gray-800 focus:outline-none p-1">
-              <i data-lucide="menu" id="menu-icon" class="w-7 h-7"></i>
-              <i data-lucide="x" id="close-icon" class="w-7 h-7 hidden"></i>
+              <span id="menu-icon-wrapper" class="block">
+                <i data-lucide="menu" class="w-7 h-7"></i>
+              </span>
+              <span id="close-icon-wrapper" class="hidden">
+                <i data-lucide="x" class="w-7 h-7"></i>
+              </span>
             </button>
           </div>
         </div>
@@ -492,7 +496,7 @@
                                 <!-- Floating Badge -->
                                 <div class="absolute -bottom-4 -left-4 bg-royal-800 text-white p-4 rounded-xl shadow-xl z-20 transform -rotate-3 group-hover:rotate-0 transition-transform">
                                     <p class="text-[9px] font-bold uppercase tracking-widest opacity-60">Principal</p>
-                                    <p class="text-sm font-serif font-bold">Since 1998</p>
+                                    <p class="text-sm font-serif font-bold">1998</p>
                                 </div>
                             </div>
                         </div>
@@ -1274,8 +1278,9 @@
             const mobileMenu = document.getElementById('mobile-menu');
             const overlay = document.getElementById('menu-overlay');
             const drawer = document.getElementById('menu-drawer');
-            const menuIcon = document.getElementById('menu-icon');
-            const closeIcon = document.getElementById('close-icon');
+            
+            const menuIconWrapper = document.getElementById('menu-icon-wrapper');
+            const closeIconWrapper = document.getElementById('close-icon-wrapper');
             
             if (!mobileMenu) return;
             
@@ -1296,6 +1301,15 @@
                         drawer.classList.add('translate-x-0');
                     }
                 }, 10);
+
+                if (menuIconWrapper) {
+                    menuIconWrapper.classList.remove('block');
+                    menuIconWrapper.classList.add('hidden');
+                }
+                if (closeIconWrapper) {
+                    closeIconWrapper.classList.remove('hidden');
+                    closeIconWrapper.classList.add('block');
+                }
             } else {
                 // Animate out
                 if (overlay) {
@@ -1311,10 +1325,16 @@
                     mobileMenu.classList.add('hidden');
                     document.body.classList.remove('modal-open');
                 }, 300);
+
+                if (menuIconWrapper) {
+                    menuIconWrapper.classList.remove('hidden');
+                    menuIconWrapper.classList.add('block');
+                }
+                if (closeIconWrapper) {
+                    closeIconWrapper.classList.remove('block');
+                    closeIconWrapper.classList.add('hidden');
+                }
             }
-            
-            if (menuIcon) menuIcon.classList.toggle('hidden');
-            if (closeIcon) closeIcon.classList.toggle('hidden');
             
             if (window.lucide) lucide.createIcons();
         }
@@ -1810,7 +1830,7 @@
     <!-- 1. ADMISSION POPUP (IMAGE)
          To DISABLE: Comment out the entire block below.
     -->
-    <div id="popup-admission" class="fixed inset-0 z-[150] flex items-center justify-center p-4">
+    <div id="popup-admission" class="fixed inset-0 z-[150] hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-royal-950/90 backdrop-blur-2xl" onclick="closePopup('popup-admission')"></div>
         <div class="relative bg-white rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] max-w-3xl w-full flex flex-col md:flex-row animate-in fade-in zoom-in duration-500 border border-white/10">
             <button onclick="closePopup('popup-admission')" class="absolute top-6 right-6 z-20 bg-white/10 hover:bg-red-500 text-white md:text-slate-400 md:bg-slate-100 md:hover:bg-red-50 md:hover:text-red-500 p-3 rounded-full transition-all backdrop-blur-md">
@@ -1860,7 +1880,7 @@
     <!-- 3. NOTICE CENTER POPUP
          To DISABLE: Comment out the entire block below.
     -->
-    <div id="popup-notice-center" class="fixed inset-0 z-[150] flex items-center justify-center p-4">
+    <div id="popup-notice-center" class="fixed inset-0 z-[150] hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-royal-950/80 backdrop-blur-2xl" onclick="closePopup('popup-notice-center')"></div>
         <div class="relative bg-white rounded-[2rem] md:rounded-[3rem] shadow-[0_80px_150px_-30px_rgba(0,0,0,0.6)] max-w-lg w-full overflow-hidden animate-in fade-in zoom-in duration-700 border border-white/20">
             <!-- Elegant Header -->
