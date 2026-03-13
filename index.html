@@ -1476,14 +1476,14 @@
                 "July", "August", "September", "October", "November", "December"
             ];
 
-            openModal('Admission Inquiry', \`
+            openModal('Admission Inquiry', `
                 <div class="mb-6">
                     <p class="text-gray-600 leading-relaxed text-sm">Please provide the following details for the admission inquiry. All fields marked with * are required.</p>
                     <p class="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-2">Note: Provided information should be accurate.</p>
                 </div>
-                <form action="https://formsubmit.co/hillsideonlineadmission@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6" onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerHTML = '<i class=\\\'w-5 h-5 animate-spin border-2 border-white border-t-transparent rounded-full\\\'></i> Sending...';">
+                <form action="https://formsubmit.co/hillsideonlineadmission@gmail.com" method="POST" enctype="multipart/form-data" class="space-y-6" onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.innerHTML = '<i class=\'w-5 h-5 animate-spin border-2 border-white border-t-transparent rounded-full\'></i> Sending...';">
                     <input type="hidden" name="_subject" value="New Admission Inquiry">
-                    <input type="hidden" name="_next" value="\${redirectUrl}">
+                    <input type="hidden" name="_next" value="${redirectUrl}">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     
@@ -1521,15 +1521,15 @@
                                 <div class="grid grid-cols-3 gap-1">
                                     <select name="dob_day" required class="px-2 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:border-gold-500 outline-none transition-all text-[10px]">
                                         <option value="" disabled selected>D</option>
-                                        \${days.map(d => \`<option value="\${d}">\${d}</option>\`).join('')}
+                                        ${days.map(d => `<option value="${d}">${d}</option>`).join('')}
                                     </select>
                                     <select name="dob_month" required class="px-2 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:border-gold-500 outline-none transition-all text-[10px]">
                                         <option value="" disabled selected>M</option>
-                                        \${months.map((m, i) => \`<option value="\${m}">\${m}</option>\`).join('')}
+                                        ${months.map((m, i) => `<option value="${m}">${m}</option>`).join('')}
                                     </select>
                                     <select name="dob_year" required class="px-2 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:bg-white focus:border-gold-500 outline-none transition-all text-[10px]">
                                         <option value="" disabled selected>Y</option>
-                                        \${years.map(y => \`<option value="\${y}">\${y}</option>\`).join('')}
+                                        ${years.map(y => `<option value="${y}">${y}</option>`).join('')}
                                     </select>
                                 </div>
                             </div>
@@ -1587,19 +1587,19 @@
                         Submit Admission Inquiry
                     </button>
                 </form>
-            \`);
+            `);
         }
         window.openApplyModal = openApplyModal;
 
         function openVisitModal() {
             const redirectUrl = window.location.origin + window.location.pathname + '?success=true';
-            openModal('Book a School Visit', \`
+            openModal('Book a School Visit', `
                 <div class="mb-8">
                     <p class="text-gray-600 leading-relaxed">We would love to show you around! Please choose a preferred date and time for your visit.</p>
                 </div>
                 <form action="https://formsubmit.co/hillsideonlineadmission@gmail.com" method="POST" class="space-y-5">
                     <input type="hidden" name="_subject" value="New School Visit Request">
-                    <input type="hidden" name="_next" value="\${redirectUrl}">
+                    <input type="hidden" name="_next" value="${redirectUrl}">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     
@@ -1632,7 +1632,7 @@
                         Request Visit
                     </button>
                 </form>
-            \`);
+            `);
         }
         window.openVisitModal = openVisitModal;
 
@@ -1839,7 +1839,7 @@
         </div>
     </div>
 
-    <!-- 2. VIDEO ADVERTISEMENT POPUP -->
+    <!-- 2. VIDEO ADVERTISEMENT POPUP (DISABLED)
     <div id="popup-video" class="fixed inset-0 z-[150] flex items-center justify-center p-4">
         <div class="absolute inset-0 bg-royal-950/90 backdrop-blur-2xl" onclick="closePopup('popup-video')"></div>
         <div class="relative bg-black rounded-[1.5rem] md:rounded-[3.5rem] overflow-hidden shadow-[0_0_100px_rgba(212,175,55,0.15)] max-w-5xl w-full aspect-video md:aspect-video h-auto animate-in fade-in zoom-in duration-700 border border-white/10">
@@ -1848,7 +1848,6 @@
             </button>
             <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" title="School Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             
-            <!-- Apply Button for Video -->
             <div class="absolute bottom-4 md:bottom-12 left-1/2 -translate-x-1/2 z-30 w-full px-4 md:px-8 flex justify-center">
                 <button onclick="closePopup('popup-video'); openApplyModal()" class="group bg-royal-800 text-white px-6 md:px-12 py-2.5 md:py-5 rounded-full font-bold text-[9px] md:text-xs uppercase tracking-[0.2em] md:tracking-[0.3em] hover:bg-gold-500 transition-all shadow-lg flex items-center gap-2 md:gap-4 hover:-translate-y-1 active:scale-95 border border-white/10">
                     Apply Now <i data-lucide="sparkles" class="w-3.5 h-3.5 md:w-5 md:h-5 animate-pulse"></i>
@@ -1857,7 +1856,7 @@
             <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
         </div>
     </div>
-
+    -->
     <!-- 3. NOTICE CENTER POPUP
          To DISABLE: Comment out the entire block below.
     -->
