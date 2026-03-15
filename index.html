@@ -278,8 +278,8 @@
                 <!-- Main Content Area (Fits within slider height on mobile) -->
                 <div class="h-[75vh] md:h-screen min-h-[600px] md:min-h-screen flex flex-col justify-center items-center pt-20 pb-28 md:pt-48 md:pb-80 lg:pt-80 lg:pb-96">
                     <h1 id="hero-title" class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-white mb-6 md:mb-8 leading-[1.1] md:leading-[1] transition-all duration-700 tracking-tight">
-                        Empowering <br class="hidden md:block" />
-                        <span class="text-royal-800 italic">Minds</span>
+                        Holistic <br class="hidden md:block" />
+                        <span class="text-royal-800 italic">Growth</span>
                     </h1>
                     
                     <p id="hero-desc" class="text-sm md:text-xl text-gray-300 font-light leading-relaxed max-w-2xl mx-auto mb-10 md:mb-12 animate-fade-in-up">
@@ -299,7 +299,7 @@
                 </div>
 
                 <!-- Stats Section (Floating Overlap) -->
-                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 md:translate-y-0 md:bottom-10 lg:bottom-4 w-[92%] max-w-4xl px-4 z-20">
+                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-[92%] max-w-4xl px-4 z-50">
                     <!-- Mobile View: Compact White Card -->
                     <div class="md:hidden bg-white p-4 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.15)] grid grid-cols-2 gap-y-5 gap-x-2 items-center border border-gray-50">
                         <div class="text-center px-1">
@@ -877,7 +877,7 @@
                                         <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Published On</span>
                                         <span class="text-[11px] font-bold text-slate-600 uppercase tracking-widest">March 12, 2026</span>
                                     </div>
-                                    <button onclick="openNoticeDetail('Admissions Open for 2081', 'Admission forms are now available for the upcoming academic session 2081. Parents are requested to visit the school office for more details regarding the entrance exam and document requirements.', 'March 12, 2026', true, 'user-plus')" class="flex items-center gap-2 text-royal-800 text-[11px] font-bold uppercase tracking-widest group/btn">
+                                    <button onclick="openNoticeDetail('Admissions Open for 2081', 'Admission forms are now available for the upcoming academic session 2081. Parents are requested to visit the school office for more details regarding the entrance exam and document requirements.', 'March 12, 2026', '#', 'user-plus')" class="flex items-center gap-2 text-royal-800 text-[11px] font-bold uppercase tracking-widest group/btn">
                                         View <i data-lucide="arrow-right" class="w-4 h-4 group-hover/btn:translate-x-2 transition-all"></i>
                                     </button>
                                 </div>
@@ -1761,6 +1761,26 @@
                 }, 500);
             }
 
+            // --- POPUP TRIGGERS ---
+            // Show Admission Popup after 2 seconds
+            setTimeout(() => {
+                const admissionPopup = document.getElementById('popup-admission');
+                if (admissionPopup) {
+                    admissionPopup.classList.remove('hidden');
+                    admissionPopup.classList.add('flex');
+                }
+            }, 2000);
+
+            // Show Notice Center Popup after 8 seconds
+            // We removed the "if hidden" check so it always tries to show up
+            setTimeout(() => {
+                const noticePopup = document.getElementById('popup-notice-center');
+                if (noticePopup) {
+                    noticePopup.classList.remove('hidden');
+                    noticePopup.classList.add('flex');
+                }
+            }, 8000);
+
             const slider = document.getElementById('notice-slider');
             const prevBtn = document.getElementById('notice-prev');
             const nextBtn = document.getElementById('notice-next');
@@ -2078,17 +2098,21 @@
         function closePopup(id) {
             const popup = document.getElementById(id);
             if (popup) {
-                popup.style.display = 'none';
+                popup.classList.add('hidden');
+                popup.classList.remove('flex');
+                popup.style.display = 'none'; // Fallback
             }
         }
 
-        function openNoticeDetail(title, desc, date, hasDownload, icon = 'info') {
+        function openNoticeDetail(title, desc, date, downloadUrl, icon = 'info') {
             const modal = document.getElementById('notice-detail-modal');
             const content = document.getElementById('notice-detail-content');
             
-            let downloadBtn = hasDownload ? `
+            // If downloadUrl is a string (a link), we show the button. 
+            // If it is null, false, or empty, we hide it.
+            let downloadBtn = (downloadUrl && downloadUrl !== false) ? `
                 <div class="mt-6 md:mt-8 flex justify-center">
-                    <a href="#" class="group relative inline-flex items-center gap-2 bg-royal-800 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest hover:bg-royal-900 transition-all shadow-xl shadow-royal-900/20 overflow-hidden">
+                    <a href="${downloadUrl}" target="_blank" class="group relative inline-flex items-center gap-2 bg-royal-800 text-white px-6 md:px-8 py-2.5 md:py-3 rounded-full font-bold text-[9px] md:text-[10px] uppercase tracking-widest hover:bg-royal-900 transition-all shadow-xl shadow-royal-900/20 overflow-hidden">
                         <i data-lucide="download" class="w-3.5 h-3.5 md:w-4 md:h-4"></i> Download Attachment
                     </a>
                 </div>
